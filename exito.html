@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mimarido — ¡Listo!</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", sans-serif; max-width: 560px; margin: 0 auto;
+         padding: 4rem 1.5rem; color: #222; line-height: 1.6; text-align: center; }
+  h1 { font-size: 1.8rem; }
+  .cta { display: inline-block; margin-top: 1.5rem; background: #208AEF; color: #fff;
+         padding: .9rem 1.6rem; border-radius: 12px; text-decoration: none; font-weight: 600; }
+  .hint { color: #888; font-size: .9rem; margin-top: 2rem; }
+</style>
+</head>
+<body>
+<h1>✅ ¡Todo listo!</h1>
+<p>Tu suscripción está activa. Él ya lo sabe — vuelve a la app y seguid donde
+lo dejasteis.</p>
+<a class="cta" href="companeroia://">Volver a la app</a>
+<p class="hint">Si la app no se abre sola, ábrela desde tu pantalla de inicio.
+El recibo te llega por correo desde Stripe.</p>
+<script>setTimeout(() => { location.href = 'companeroia://'; }, 1200);</script>
+</body>
+</html>
