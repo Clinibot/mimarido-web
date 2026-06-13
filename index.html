@@ -35,8 +35,8 @@
   --cream:#FAF8F5; --ink:#1C1614; --rose:#8B5A7D; --rose-deep:#4E2F45;
   --rose-light:#F2E8EF; --amber:#C9956A; --muted:#9D8580; --surface:#F5F0EE;
   --border:#E8E0DC; --blue:#208AEF; --white:#fff;
-  --cine:radial-gradient(120% 80% at 25% 12%, #F7EEE7 0%, rgba(247,238,231,0) 50%),
-         linear-gradient(158deg, #ECD7D0 0%, #D2A9AE 28%, #8B5A7D 68%, #4E2F45 100%);
+  --cine:radial-gradient(120% 80% at 25% 10%, rgba(255,228,214,.20) 0%, rgba(255,228,214,0) 46%),
+         linear-gradient(158deg, #9C5E81 0%, #8B5A7D 30%, #6E4462 64%, #3F2438 100%);
   --shadow:0 30px 70px -28px rgba(45,26,40,.55);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -69,15 +69,20 @@ header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(140%) blur(10px
 /* ---------- hero ---------- */
 .hero{background:var(--cine);color:#FAF8F5;position:relative;overflow:hidden;
   padding:64px 0 78px;border-bottom-left-radius:34px;border-bottom-right-radius:34px}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:linear-gradient(102deg, rgba(45,26,40,.42) 0%, rgba(45,26,40,.18) 40%, rgba(45,26,40,0) 66%);
+  border-bottom-left-radius:34px;border-bottom-right-radius:34px}
 .hero .grain{position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;position:relative}
-.hero h1{font-size:clamp(38px,6.4vw,62px);font-weight:300;line-height:1.04;letter-spacing:-1.8px;margin-bottom:18px}
-.hero h1 em{font-style:normal;color:#F7DCD2}
-.hero .sub{font-size:clamp(17px,2.3vw,21px);font-weight:300;max-width:30ch;color:rgba(250,248,245,.93);margin-bottom:20px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;position:relative;z-index:2}
+.hero h1{font-size:clamp(38px,6.4vw,62px);font-weight:300;line-height:1.04;letter-spacing:-1.8px;margin-bottom:18px;
+  text-shadow:0 2px 24px rgba(45,26,40,.45),0 1px 3px rgba(45,26,40,.3)}
+.hero h1 em{font-style:normal;color:#FBE4DA;font-weight:400}
+.hero .sub{font-size:clamp(17px,2.3vw,21px);font-weight:300;max-width:30ch;color:rgba(255,253,251,.96);margin-bottom:20px;
+  text-shadow:0 1px 14px rgba(45,26,40,.35)}
 .hero .transparency{display:inline-flex;align-items:center;gap:9px;font-size:14.5px;
-  color:rgba(250,248,245,.86);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
-  padding:9px 15px;border-radius:9999px;margin-bottom:26px;backdrop-filter:blur(4px)}
+  color:rgba(255,255,255,.97);background:rgba(45,26,40,.32);border:1px solid rgba(255,255,255,.32);
+  padding:9px 15px;border-radius:9999px;margin-bottom:26px;backdrop-filter:blur(5px)}
 .hero .transparency .dot{width:8px;height:8px;border-radius:50%;background:#F7DCD2;flex:none}
 .hero .cta-row{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
 .hero .micro{font-size:14px;color:rgba(250,248,245,.8)}
