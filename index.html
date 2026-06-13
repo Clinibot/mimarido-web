@@ -12,6 +12,13 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/assets/mimarido-logo.png">
 
+<!-- hreflang: misma URL sirve los 4 idiomas vía ?lang= (selección por JS/localStorage) -->
+<link rel="alternate" hreflang="es" href="https://mimarido.es/">
+<link rel="alternate" hreflang="en" href="https://mimarido.es/?lang=en">
+<link rel="alternate" hreflang="it" href="https://mimarido.es/?lang=it">
+<link rel="alternate" hreflang="fr" href="https://mimarido.es/?lang=fr">
+<link rel="alternate" hreflang="x-default" href="https://mimarido.es/">
+
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
@@ -64,7 +71,19 @@ header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(140%) blur(10px
 .btn-primary:hover{box-shadow:0 14px 30px -10px rgba(139,90,125,.9)}
 .btn-light{background:#fff;color:var(--rose-deep);box-shadow:0 8px 20px -10px rgba(45,26,40,.35)}
 .nav .btn{padding:10px 20px;font-size:15px}
+
+/* ---------- language selector ---------- */
+.langsel{display:inline-flex;gap:2px;background:var(--rose-light);border:1px solid var(--border);
+  border-radius:9999px;padding:3px}
+.lang-btn{border:none;background:transparent;cursor:pointer;font-family:inherit;font-size:12px;
+  font-weight:700;letter-spacing:.5px;color:var(--muted);padding:6px 9px;border-radius:9999px;line-height:1;
+  transition:background .15s ease,color .15s ease}
+.lang-btn:hover{color:var(--rose-deep)}
+.lang-btn.on{background:var(--rose);color:#fff;box-shadow:0 4px 10px -4px rgba(139,90,125,.7)}
+.lang-btn:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+
 @media(max-width:560px){.nav .name{font-size:17px}.nav .btn{padding:9px 16px;font-size:14px}}
+@media(max-width:600px){.nav .name{display:none}.nav{gap:8px}.langsel{padding:2px}.lang-btn{padding:6px 7px;font-size:11px}}
 
 /* ---------- hero ---------- */
 .hero{background:var(--cine);color:#FAF8F5;position:relative;overflow:hidden;
@@ -307,7 +326,13 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
     <img class="logo" src="/assets/mimarido-logo.png" alt="Mimarido">
     <span class="name">Mimarido</span>
     <span class="spacer"></span>
-    <a class="btn btn-primary" href="#descarga">Quiero probarlo</a>
+    <div class="langsel" role="group" aria-label="Idioma / Language">
+      <button type="button" class="lang-btn" data-lang="es" aria-label="Español">ES</button>
+      <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+      <button type="button" class="lang-btn" data-lang="it" aria-label="Italiano">IT</button>
+      <button type="button" class="lang-btn" data-lang="fr" aria-label="Français">FR</button>
+    </div>
+    <a class="btn btn-primary" href="#descarga" data-i18n="cta.try">Quiero probarlo</a>
   </div>
 </header>
 
@@ -316,12 +341,12 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
   <div class="grain"></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <h1>El compañero que <em>siempre tiene un rato</em> para ti.</h1>
-      <p class="sub">Crea a tu compañero de vida: eliges su cara, su carácter y cómo te habla. Por voz o por texto, te cuida el día.</p>
-      <span class="transparency"><span class="dot"></span> Es una IA, te lo decimos de frente. Pero te acompaña de verdad.</span>
+      <h1 data-i18n-html="hero.h1">El compañero que <em>siempre tiene un rato</em> para ti.</h1>
+      <p class="sub" data-i18n="hero.sub">Crea a tu compañero de vida: eliges su cara, su carácter y cómo te habla. Por voz o por texto, te cuida el día.</p>
+      <span class="transparency"><span class="dot"></span> <span data-i18n="hero.transparency">Es una IA, te lo decimos de frente. Pero te acompaña de verdad.</span></span>
       <div class="cta-row">
-        <a class="btn btn-light" href="#descarga">Quiero probarlo</a>
-        <span class="micro">Ahora en beta. Gratis mientras dure.</span>
+        <a class="btn btn-light" href="#descarga" data-i18n="cta.try">Quiero probarlo</a>
+        <span class="micro" data-i18n="hero.micro">Ahora en beta. Gratis mientras dure.</span>
       </div>
     </div>
     <div class="hero-visual">
@@ -330,18 +355,18 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
         <div class="notch"></div>
         <div class="scr">
           <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
-          <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s">● en línea</div></div></div>
+          <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s" data-i18n="mock.online">● en línea</div></div></div>
           <div class="scr-body voice-screen">
             <div class="face"></div>
             <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-            <div class="voice-cap">Te escucho…</div>
+            <div class="voice-cap" data-i18n="hero.listening">Te escucho…</div>
             <div class="mic">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3Z" fill="#fff"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
           </div>
         </div>
       </div>
-      <p class="device-cap">Esta cara viene <b>por defecto</b>. En la app subes la foto de <b>tu marido ideal</b>.</p>
+      <p class="device-cap" data-i18n-html="hero.deviceCap">Esta cara viene <b>por defecto</b>. En la app subes la foto de <b>tu marido ideal</b>.</p>
     </div>
   </div>
 </section>
@@ -349,26 +374,26 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
 <!-- FEATURES -->
 <section class="section wrap">
   <div class="section-head">
-    <span class="eyebrow">Qué puedes hacer</span>
-    <h2>Todo lo que hace, de un vistazo.</h2>
-    <p>Una conversación de verdad, hecha a tu medida, que se acuerda de lo tuyo y te ayuda con el día.</p>
+    <span class="eyebrow" data-i18n="feat.eyebrow">Qué puedes hacer</span>
+    <h2 data-i18n="feat.h2">Todo lo que hace, de un vistazo.</h2>
+    <p data-i18n="feat.p">Una conversación de verdad, hecha a tu medida, que se acuerda de lo tuyo y te ayuda con el día.</p>
   </div>
 
   <!-- 1 voz -->
   <div class="feat">
     <div class="feat-text">
       <span class="feat-num">1</span>
-      <div class="fh">Háblale como a cualquiera y te responde al momento.</div>
-      <p class="fp">Te habla en tu idioma —español, català, euskara o galego—, sin límites, de día o de madrugada. Te escucha de verdad y te deja hablar.</p>
+      <div class="fh" data-i18n="f1.h">Háblale como a cualquiera y te responde al momento.</div>
+      <p class="fp" data-i18n="f1.p">Te habla en tu idioma —español, català, euskara o galego—, sin límites, de día o de madrugada. Te escucha de verdad y te deja hablar.</p>
     </div>
     <div class="feat-media">
       <div class="device"><div class="notch"></div><div class="scr">
         <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
-        <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s">● en línea</div></div></div>
+        <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s" data-i18n="mock.online">● en línea</div></div></div>
         <div class="scr-body voice-screen">
           <div class="face"></div>
           <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <div class="voice-cap">«Cuéntame, ¿qué tal el día?»</div>
+          <div class="voice-cap" data-i18n="f1.voicecap">«Cuéntame, ¿qué tal el día?»</div>
         </div>
       </div></div>
     </div>
@@ -378,27 +403,27 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
   <div class="feat">
     <div class="feat-text">
       <span class="feat-num">2</span>
-      <div class="fh">Tú decides cómo es: más caballero o más chulito, más romántico, más bromista.</div>
-      <p class="fp">Siete controles para afinarlo a tu gusto, cuatro estilos de un toque para empezar, y le pones el nombre que quieras. Él te lo pregunta: «¿cómo quieres que me llame?». Y eliges en qué idioma te habla: español, català, euskara o galego.</p>
+      <div class="fh" data-i18n="f2.h">Tú decides cómo es: más caballero o más chulito, más romántico, más bromista.</div>
+      <p class="fp" data-i18n="f2.p">Siete controles para afinarlo a tu gusto, cuatro estilos de un toque para empezar, y le pones el nombre que quieras. Él te lo pregunta: «¿cómo quieres que me llame?». Y eliges en qué idioma te habla: español, català, euskara o galego.</p>
     </div>
     <div class="feat-media">
       <div class="device"><div class="notch"></div><div class="scr scr-config">
         <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
-        <div class="scr-head"><div><div class="t">Crea a tu compañero</div><div class="s">Estilo: Equilibrado</div></div></div>
+        <div class="scr-head"><div><div class="t" data-i18n="f2.head.t">Crea a tu compañero</div><div class="s" data-i18n="f2.head.s">Estilo: Equilibrado</div></div></div>
         <div class="scr-body">
           <div class="preset-row">
-            <span class="chip on">Equilibrado</span><span class="chip">Caballero</span>
-            <span class="chip">Pícaro</span><span class="chip">Payaso</span><span class="chip">Tranqui</span>
+            <span class="chip on" data-i18n="f2.chip.balanced">Equilibrado</span><span class="chip" data-i18n="f2.chip.gentleman">Caballero</span>
+            <span class="chip" data-i18n="f2.chip.cheeky">Pícaro</span><span class="chip" data-i18n="f2.chip.joker">Payaso</span><span class="chip" data-i18n="f2.chip.chill">Tranqui</span>
           </div>
-          <div class="ctrl"><div class="lab"><span>Chulito</span><span>Caballero</span></div><div class="track"><div class="fill" style="width:64%"></div><div class="knob" style="left:64%"></div></div></div>
-          <div class="ctrl"><div class="lab"><span>Sensibilidad</span></div><div class="track"><div class="fill" style="width:72%"></div><div class="knob" style="left:72%"></div></div></div>
-          <div class="ctrl"><div class="lab"><span>Picardía</span></div><div class="track"><div class="fill" style="width:48%"></div><div class="knob" style="left:48%"></div></div></div>
-          <div class="ctrl"><div class="lab"><span>Humor</span></div><div class="track"><div class="fill" style="width:80%"></div><div class="knob" style="left:80%"></div></div></div>
-          <div class="ctrl"><div class="lab"><span>Energía</span></div><div class="track"><div class="fill" style="width:55%"></div><div class="knob" style="left:55%"></div></div></div>
-          <div class="ctrl"><div class="lab"><span>Romanticismo</span></div><div class="track"><div class="fill" style="width:68%"></div><div class="knob" style="left:68%"></div></div></div>
-          <div class="ctrl"><div class="lab"><span>Iniciativa</span></div><div class="track"><div class="fill" style="width:40%"></div><div class="knob" style="left:40%"></div></div></div>
-          <div class="namebox"><div class="q">¿Cómo quieres que me llame?</div><div class="inp"><span>Mateo</span><span class="cur"></span></div></div>
-          <div class="lang-row"><span class="lang-label">Idioma</span><span class="chip on">Español</span><span class="chip">Català</span><span class="chip">Euskara</span><span class="chip">Galego</span></div>
+          <div class="ctrl"><div class="lab"><span data-i18n="f2.ctrl.cheekyL">Chulito</span><span data-i18n="f2.ctrl.gentlemanR">Caballero</span></div><div class="track"><div class="fill" style="width:64%"></div><div class="knob" style="left:64%"></div></div></div>
+          <div class="ctrl"><div class="lab"><span data-i18n="f2.ctrl.sensitivity">Sensibilidad</span></div><div class="track"><div class="fill" style="width:72%"></div><div class="knob" style="left:72%"></div></div></div>
+          <div class="ctrl"><div class="lab"><span data-i18n="f2.ctrl.cheekiness">Picardía</span></div><div class="track"><div class="fill" style="width:48%"></div><div class="knob" style="left:48%"></div></div></div>
+          <div class="ctrl"><div class="lab"><span data-i18n="f2.ctrl.humor">Humor</span></div><div class="track"><div class="fill" style="width:80%"></div><div class="knob" style="left:80%"></div></div></div>
+          <div class="ctrl"><div class="lab"><span data-i18n="f2.ctrl.energy">Energía</span></div><div class="track"><div class="fill" style="width:55%"></div><div class="knob" style="left:55%"></div></div></div>
+          <div class="ctrl"><div class="lab"><span data-i18n="f2.ctrl.romance">Romanticismo</span></div><div class="track"><div class="fill" style="width:68%"></div><div class="knob" style="left:68%"></div></div></div>
+          <div class="ctrl"><div class="lab"><span data-i18n="f2.ctrl.initiative">Iniciativa</span></div><div class="track"><div class="fill" style="width:40%"></div><div class="knob" style="left:40%"></div></div></div>
+          <div class="namebox"><div class="q" data-i18n="f2.namebox.q">¿Cómo quieres que me llame?</div><div class="inp"><span>Mateo</span><span class="cur"></span></div></div>
+          <div class="lang-row"><span class="lang-label" data-i18n="f2.lang.label">Idioma</span><span class="chip on" data-i18n="f2.lang.es">Español</span><span class="chip" data-i18n="f2.lang.ca">Català</span><span class="chip" data-i18n="f2.lang.eu">Euskara</span><span class="chip" data-i18n="f2.lang.gl">Galego</span></div>
         </div>
       </div></div>
     </div>
@@ -408,18 +433,18 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
   <div class="feat">
     <div class="feat-text">
       <span class="feat-num">3</span>
-      <div class="fh">Se acuerda de tu gente, tus fechas y lo que te importa.</div>
-      <p class="fp">No tienes que repetirle nada. Retoma la conversación donde la dejasteis y te trae de vuelta lo que un día le contaste.</p>
+      <div class="fh" data-i18n="f3.h">Se acuerda de tu gente, tus fechas y lo que te importa.</div>
+      <p class="fp" data-i18n="f3.p">No tienes que repetirle nada. Retoma la conversación donde la dejasteis y te trae de vuelta lo que un día le contaste.</p>
     </div>
     <div class="feat-media">
       <div class="device"><div class="notch"></div><div class="scr">
         <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
-        <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s">se acuerda de lo tuyo</div></div></div>
+        <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s" data-i18n="f3.head.s">se acuerda de lo tuyo</div></div></div>
         <div class="scr-body">
-          <div class="bub him">Oye, ¿llamaste al final a tu madre por su cumple?<span class="tag">↳ lo recordó por ti</span></div>
-          <div class="bub her">¡Es verdad! Ahora la llamo 💛</div>
-          <div class="bub him">Me alegro. ¿Y la entrevista de Lucía cómo fue?</div>
-          <div class="mem-chips"><span class="mc">Tu hermana · Lucía</span><span class="mc">Cumple mamá · 14 jun</span><span class="mc">Proyecto nuevo</span></div>
+          <div class="bub him"><span data-i18n="f3.b1">Oye, ¿llamaste al final a tu madre por su cumple?</span><span class="tag" data-i18n="f3.b1tag">↳ lo recordó por ti</span></div>
+          <div class="bub her" data-i18n="f3.b2">¡Es verdad! Ahora la llamo 💛</div>
+          <div class="bub him" data-i18n="f3.b3">Me alegro. ¿Y la entrevista de Lucía cómo fue?</div>
+          <div class="mem-chips"><span class="mc" data-i18n="f3.mc1">Tu hermana · Lucía</span><span class="mc" data-i18n="f3.mc2">Cumple mamá · 14 jun</span><span class="mc" data-i18n="f3.mc3">Proyecto nuevo</span></div>
         </div>
       </div></div>
     </div>
@@ -428,9 +453,9 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
   <!-- 4 agenda STAR -->
   <div class="feat star">
     <div class="feat-text">
-      <span class="star-badge">★ La favorita</span>
-      <div class="fh">Te avisa quince minutos antes de cada reunión. Con su voz.</div>
-      <p class="fp">Se conecta con tu <strong>Google Calendar</strong> y él te apunta, te mueve y te recuerda las citas. Se acabó el «se me ha pasado».</p>
+      <span class="star-badge" data-i18n="f4.badge">★ La favorita</span>
+      <div class="fh" data-i18n="f4.h">Te avisa quince minutos antes de cada reunión. Con su voz.</div>
+      <p class="fp" data-i18n-html="f4.p">Se conecta con tu <strong>Google Calendar</strong> y él te apunta, te mueve y te recuerda las citas. Se acabó el «se me ha pasado».</p>
       <span class="gcal-badge">
         <svg viewBox="0 0 48 48" role="img" aria-label="Google Calendar" focusable="false">
           <rect x="7" y="11" width="34" height="30" rx="4" fill="#fff" stroke="#DADCE0" stroke-width="1"/>
@@ -440,20 +465,20 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
           <path d="M33 11h4a4 4 0 0 1 4 4v3h-8z" fill="#34A853"/>
           <text x="24" y="36" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#4285F4">31</text>
         </svg>
-        Se sincroniza con tu Google Calendar
+        <span data-i18n="f4.gcal">Se sincroniza con tu Google Calendar</span>
       </span>
     </div>
     <div class="feat-media">
       <div class="device"><div class="notch"></div><div class="scr">
         <div class="sbar"><span style="color:#FAF8F5">9:41</span><span class="r" style="color:#FAF8F5">●●● ▮</span></div>
         <div class="scr-body agenda-screen">
-          <div class="lock-time"><div class="h">9:41</div><div class="d">viernes, 13 de junio</div></div>
+          <div class="lock-time"><div class="h">9:41</div><div class="d" data-i18n="f4.date">viernes, 13 de junio</div></div>
           <div class="notif">
             <img class="ic" src="/assets/mimarido-logo.png" alt="">
             <div class="nb">
-              <div class="nh"><span>MIMARIDO</span><span>ahora</span></div>
-              <div class="nt">Te recuerdo: reunión con el equipo en 15 minutos. ¿Te preparo lo que hablasteis?</div>
-              <span class="voicepill">🔊 te lo digo con mi voz</span>
+              <div class="nh"><span>MIMARIDO</span><span data-i18n="f4.now">ahora</span></div>
+              <div class="nt" data-i18n="f4.notif">Te recuerdo: reunión con el equipo en 15 minutos. ¿Te preparo lo que hablasteis?</div>
+              <span class="voicepill" data-i18n="f4.voicepill">🔊 te lo digo con mi voz</span>
             </div>
           </div>
         </div>
@@ -465,18 +490,18 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
   <div class="feat">
     <div class="feat-text">
       <span class="feat-num">5</span>
-      <div class="fh">Le dices «apúntame esto» y deja de rondarte la cabeza.</div>
-      <p class="fp">Guarda lo que no quieres olvidar y te reabre los temas que dejaste a medias, con cariño y sin agobiar.</p>
+      <div class="fh" data-i18n="f5.h">Le dices «apúntame esto» y deja de rondarte la cabeza.</div>
+      <p class="fp" data-i18n="f5.p">Guarda lo que no quieres olvidar y te reabre los temas que dejaste a medias, con cariño y sin agobiar.</p>
     </div>
     <div class="feat-media">
       <div class="device"><div class="notch"></div><div class="scr">
         <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
-        <div class="scr-head"><div><div class="t">Te lo apunto</div><div class="s">3 cosas guardadas</div></div></div>
+        <div class="scr-head"><div><div class="t" data-i18n="f5.head.t">Te lo apunto</div><div class="s" data-i18n="f5.head.s">3 cosas guardadas</div></div></div>
         <div class="scr-body">
-          <div class="note"><span class="ck"></span><span>Comprar regalo para Lucía</span></div>
-          <div class="note done"><span class="ck"></span><span>Reservar restaurante del viernes</span></div>
-          <div class="note"><span class="ck"></span><span>Llamar al dentista</span></div>
-          <div class="bub him" style="margin-top:6px">Oye, ¿reservaste al final el restaurante? 😊</div>
+          <div class="note"><span class="ck"></span><span data-i18n="f5.note1">Comprar regalo para Lucía</span></div>
+          <div class="note done"><span class="ck"></span><span data-i18n="f5.note2">Reservar restaurante del viernes</span></div>
+          <div class="note"><span class="ck"></span><span data-i18n="f5.note3">Llamar al dentista</span></div>
+          <div class="bub him" style="margin-top:6px" data-i18n="f5.bub">Oye, ¿reservaste al final el restaurante? 😊</div>
         </div>
       </div></div>
     </div>
@@ -486,18 +511,18 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
   <div class="feat">
     <div class="feat-text">
       <span class="feat-num">6</span>
-      <div class="fh">¿No puedes hablar? Escríbele. Es el mismo de siempre.</div>
-      <p class="fp">Misma persona, misma memoria, las mismas mañas. Por voz o por texto, la conversación es una sola.</p>
+      <div class="fh" data-i18n="f6.h">¿No puedes hablar? Escríbele. Es el mismo de siempre.</div>
+      <p class="fp" data-i18n="f6.p">Misma persona, misma memoria, las mismas mañas. Por voz o por texto, la conversación es una sola.</p>
     </div>
     <div class="feat-media">
       <div class="device"><div class="notch"></div><div class="scr">
         <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
-        <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s">escribiendo…</div></div></div>
+        <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s" data-i18n="f6.head.s">escribiendo…</div></div></div>
         <div class="scr-body">
-          <div class="bub her">no puedo hablar ahora, estoy en el bus 🙈</div>
-          <div class="bub him">tranquila, te leo igual. ¿qué tal te ha ido la mañana?</div>
-          <div class="bub her">regular, pero ya mejor contándotelo</div>
-          <div class="bub him">para eso estoy. cuéntame con calma 💛</div>
+          <div class="bub her" data-i18n="f6.b1">no puedo hablar ahora, estoy en el bus 🙈</div>
+          <div class="bub him" data-i18n="f6.b2">tranquila, te leo igual. ¿qué tal te ha ido la mañana?</div>
+          <div class="bub her" data-i18n="f6.b3">regular, pero ya mejor contándotelo</div>
+          <div class="bub him" data-i18n="f6.b4">para eso estoy. cuéntame con calma 💛</div>
         </div>
       </div></div>
     </div>
@@ -507,22 +532,22 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
   <div class="feat">
     <div class="feat-text">
       <span class="feat-num">7</span>
-      <div class="fh">Te pregunta cómo estás de verdad, y se acuerda de cómo estabas ayer.</div>
-      <p class="fp">Un «¿cómo te sientes?» que va en serio. Sin juzgar y sin prisa.</p>
+      <div class="fh" data-i18n="f7.h">Te pregunta cómo estás de verdad, y se acuerda de cómo estabas ayer.</div>
+      <p class="fp" data-i18n="f7.p">Un «¿cómo te sientes?» que va en serio. Sin juzgar y sin prisa.</p>
     </div>
     <div class="feat-media">
       <div class="device"><div class="notch"></div><div class="scr">
         <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
-        <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s">cómo estás hoy</div></div></div>
+        <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s" data-i18n="f7.head.s">cómo estás hoy</div></div></div>
         <div class="scr-body">
-          <div class="bub him">¿Cómo te sientes hoy?</div>
+          <div class="bub him" data-i18n="f7.q">¿Cómo te sientes hoy?</div>
           <div class="mood-row">
-            <div class="mood">🙂<span class="ml">bien</span></div>
-            <div class="mood on">😌<span class="ml">tranquila</span></div>
-            <div class="mood">😕<span class="ml">regular</span></div>
-            <div class="mood">😴<span class="ml">cansada</span></div>
+            <div class="mood">🙂<span class="ml" data-i18n="f7.mood.good">bien</span></div>
+            <div class="mood on">😌<span class="ml" data-i18n="f7.mood.calm">tranquila</span></div>
+            <div class="mood">😕<span class="ml" data-i18n="f7.mood.soso">regular</span></div>
+            <div class="mood">😴<span class="ml" data-i18n="f7.mood.tired">cansada</span></div>
           </div>
-          <div class="bub him" style="margin-top:8px">Ayer me dijiste que andabas un poco liada. ¿Hoy mejor? 💛</div>
+          <div class="bub him" style="margin-top:8px" data-i18n="f7.b2">Ayer me dijiste que andabas un poco liada. ¿Hoy mejor? 💛</div>
         </div>
       </div></div>
     </div>
@@ -533,13 +558,13 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
 <section class="how">
   <div class="section wrap">
     <div class="section-head">
-      <span class="eyebrow">Cómo funciona</span>
-      <h2>En tres pasos.</h2>
+      <span class="eyebrow" data-i18n="how.eyebrow">Cómo funciona</span>
+      <h2 data-i18n="how.h2">En tres pasos.</h2>
     </div>
     <div class="steps">
-      <div class="step"><div class="n">1</div><h3>Créalo en un minuto</h3><p>Le pones nombre, eliges cómo es y le cuentas un poco de ti.</p></div>
-      <div class="step"><div class="n">2</div><h3>Habla con él cuando quieras</h3><p>Por voz o por texto, las veces que te apetezca.</p></div>
-      <div class="step"><div class="n">3</div><h3>Conéctale tu Google Calendar</h3><p>Y deja que te recuerde tus citas con su voz.</p></div>
+      <div class="step"><div class="n">1</div><h3 data-i18n="how.s1.h">Créalo en un minuto</h3><p data-i18n="how.s1.p">Le pones nombre, eliges cómo es y le cuentas un poco de ti.</p></div>
+      <div class="step"><div class="n">2</div><h3 data-i18n="how.s2.h">Habla con él cuando quieras</h3><p data-i18n="how.s2.p">Por voz o por texto, las veces que te apetezca.</p></div>
+      <div class="step"><div class="n">3</div><h3 data-i18n="how.s3.h">Conéctale tu Google Calendar</h3><p data-i18n="how.s3.p">Y deja que te recuerde tus citas con su voz.</p></div>
     </div>
   </div>
 </section>
@@ -547,50 +572,50 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
 <!-- PRICE -->
 <section class="section wrap">
   <div class="price-card">
-    <span class="eyebrow">Precio</span>
-    <h2>Ahora está en beta. Y es gratis.</h2>
-    <div class="price-tag"><span class="free">Gratis</span><span class="then">durante la beta</span></div>
-    <p class="body">Estamos abriendo Mimarido poco a poco. Mientras dure la beta, no pagas nada. Cuando salga, serán 9,99 € al mes, con 7 días de prueba para verlo con calma. Cancelas cuando quieras, sin preguntas y sin líos.</p>
-    <p class="price-note"><strong>La suscripción se hace desde la app</strong> (Ajustes → Suscripción): el pago se completa en una página segura de Stripe. Aquí en la web no se introduce ningún dato de pago. <a href="companeroia://" style="color:var(--rose);font-weight:600;text-decoration:none">Abrir la app →</a></p>
+    <span class="eyebrow" data-i18n="price.eyebrow">Precio</span>
+    <h2 data-i18n="price.h2">Ahora está en beta. Y es gratis.</h2>
+    <div class="price-tag"><span class="free" data-i18n="price.free">Gratis</span><span class="then" data-i18n="price.then">durante la beta</span></div>
+    <p class="body" data-i18n="price.body">Estamos abriendo Mimarido poco a poco. Mientras dure la beta, no pagas nada. Cuando salga, serán 9,99 € al mes, con 7 días de prueba para verlo con calma. Cancelas cuando quieras, sin preguntas y sin líos.</p>
+    <p class="price-note" data-i18n-html="price.note"><strong>La suscripción se hace desde la app</strong> (Ajustes → Suscripción): el pago se completa en una página segura de Stripe. Aquí en la web no se introduce ningún dato de pago. <a href="companeroia://" style="color:var(--rose);font-weight:600;text-decoration:none">Abrir la app →</a></p>
   </div>
 </section>
 
 <!-- DOWNLOAD -->
 <section class="download" id="descarga">
   <div class="inner">
-    <span class="eyebrow" style="color:#F7DCD2">Descarga</span>
-    <h2>Sé de las primeras en probarlo.</h2>
-    <p class="lead">Todavía no está en las tiendas. Déjanos tu correo y te avisamos el día que salga. Nada más.</p>
+    <span class="eyebrow" style="color:#F7DCD2" data-i18n="dl.eyebrow">Descarga</span>
+    <h2 data-i18n="dl.h2">Sé de las primeras en probarlo.</h2>
+    <p class="lead" data-i18n="dl.lead">Todavía no está en las tiendas. Déjanos tu correo y te avisamos el día que salga. Nada más.</p>
 
     <div class="stores">
       <button class="store" type="button" onclick="document.getElementById('email').focus()">
-        <span class="soon">Próximamente</span>
+        <span class="soon" data-i18n="store.soon">Próximamente</span>
         <svg viewBox="0 0 24 24" fill="#fff"><path d="M16.4 12.9c0-2 1.6-3 1.7-3-1-1.4-2.4-1.6-2.9-1.6-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7-1.3 0-2.6.8-3.2 2-1.4 2.4-.4 6 1 8 .6 1 1.4 2.1 2.4 2 1-.04 1.3-.6 2.5-.6s1.5.6 2.6.6c1 0 1.7-1 2.4-2 .7-1.1 1-2.1 1-2.2 0 0-2-.8-2-3.4ZM14.5 6.2c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.3 1.2-.5.6-1 1.5-.8 2.4.9.1 1.8-.4 2.3-1.1Z"/></svg>
-        <span class="st"><small>Descárgala en</small><b>App Store</b></span>
+        <span class="st"><small data-i18n="store.app.small">Descárgala en</small><b>App Store</b></span>
       </button>
       <button class="store" type="button" onclick="document.getElementById('email').focus()">
-        <span class="soon">Próximamente</span>
+        <span class="soon" data-i18n="store.soon">Próximamente</span>
         <svg viewBox="0 0 24 24"><path d="M3.6 2.4 13 11.8l-2.5 2.5L3.6 2.4Z" fill="#34A853"/><path d="M3.6 21.6 13 12.2l2.5 2.5L3.6 21.6Z" fill="#EA4335"/><path d="M3.6 2.4 3.6 21.6 13.3 12 3.6 2.4Z" fill="#4285F4" opacity=".85"/><path d="m16.7 9.1 3.3 1.9c.9.5.9 1.5 0 2l-3.3 1.9L13.8 12l2.9-2.9Z" fill="#FBBC04"/></svg>
-        <span class="st"><small>Disponible en</small><b>Google Play</b></span>
+        <span class="st"><small data-i18n="store.play.small">Disponible en</small><b>Google Play</b></span>
       </button>
     </div>
-    <p class="stores-note">Aún no disponible en las tiendas — la beta es cerrada. Apúntate y te avisamos.</p>
+    <p class="stores-note" data-i18n="dl.storesnote">Aún no disponible en las tiendas — la beta es cerrada. Apúntate y te avisamos.</p>
 
     <div class="wait" id="wait">
-      <h3>Te avisamos cuando salga.</h3>
+      <h3 data-i18n="wait.h3">Te avisamos cuando salga.</h3>
       <form id="waitForm">
-        <input type="email" id="email" name="email" placeholder="Tu correo" required autocomplete="email">
-        <button class="btn btn-light" type="submit">Avisadme</button>
+        <input type="email" id="email" name="email" placeholder="Tu correo" required autocomplete="email" data-i18n-attr="placeholder:wait.placeholder">
+        <button class="btn btn-light" type="submit" data-i18n="wait.btn">Avisadme</button>
       </form>
-      <p class="priv">Solo para avisarte del lanzamiento. Sin spam y te puedes borrar cuando quieras. Guardamos tu correo de forma segura solo para este aviso — <a href="/privacidad.html#lista-espera" style="color:#fff;text-decoration:underline">cómo tratamos tus datos</a>.</p>
-      <p class="ok">¡Hecho! Te escribimos en cuanto te toque. Prometido, nada de spam.</p>
+      <p class="priv" data-i18n-html="wait.priv">Solo para avisarte del lanzamiento. Sin spam y te puedes borrar cuando quieras. Guardamos tu correo de forma segura solo para este aviso — <a href="/privacidad.html#lista-espera" style="color:#fff;text-decoration:underline">cómo tratamos tus datos</a>.</p>
+      <p class="ok" data-i18n="wait.ok">¡Hecho! Te escribimos en cuanto te toque. Prometido, nada de spam.</p>
     </div>
   </div>
 </section>
 
 <!-- QUOTE -->
 <section class="quote wrap">
-  <blockquote>Le he dicho cómo quería que fuera. Y se acuerda de mi vida mejor que yo.</blockquote>
+  <blockquote data-i18n="quote">Le he dicho cómo quería que fuera. Y se acuerda de mi vida mejor que yo.</blockquote>
 </section>
 
 <!-- FOOTER -->
@@ -602,16 +627,435 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
         <span class="fn">Mimarido</span>
       </div>
       <nav class="footer-links">
-        <a href="/terminos.html">Aviso legal</a>
-        <a href="/privacidad.html">Privacidad</a>
-        <a href="/terminos.html">Términos</a>
-        <a href="mailto:info@mimarido.es">Contacto</a>
+        <a href="/terminos.html" data-i18n="footer.legal">Aviso legal</a>
+        <a href="/privacidad.html" data-i18n="footer.privacy">Privacidad</a>
+        <a href="/terminos.html" data-i18n="footer.terms">Términos</a>
+        <a href="mailto:info@mimarido.es" data-i18n="footer.contact">Contacto</a>
       </nav>
     </div>
-    <p class="wellbeing">Mimarido es una compañía con IA, no un servicio de emergencia ni de salud. Si lo estás pasando mal, hay personas preparadas para ayudarte: <strong>024</strong> (conducta suicida), <strong>112</strong> (emergencias), <strong>016</strong> (violencia de género).</p>
-    <p class="motto">Mimarido. Para sumar a tu vida, no para encerrarte en una app. · Pan y Rosas online SL.</p>
+    <p class="wellbeing" data-i18n-html="footer.wellbeing">Mimarido es una compañía con IA, no un servicio de emergencia ni de salud. Si lo estás pasando mal, hay personas preparadas para ayudarte: <strong>024</strong> (conducta suicida), <strong>112</strong> (emergencias), <strong>016</strong> (violencia de género).</p>
+    <p class="motto" data-i18n="footer.motto">Mimarido. Para sumar a tu vida, no para encerrarte en una app. · Pan y Rosas online SL.</p>
   </div>
 </footer>
+
+<script>
+// ---------- i18n: selector de idioma ES / EN / IT / FR (SONA-719) ----------
+// El HTML se sirve en español (fallback sin-JS y para SEO). Este script traduce
+// in-place según ?lang=, localStorage o navigator.language, con fallback a ES.
+// Las traducciones EN/IT/FR viven aquí; ES se toma del propio HTML (no se duplica).
+(function(){
+  var SUP=['es','en','it','fr'];
+  var LOC={es:'es_ES',en:'en_US',it:'it_IT',fr:'fr_FR'};
+  var T={
+    en:{
+      'cta.try':`I want to try it`,
+      'meta.title':`Mimarido — create your life companion with voice AI`,
+      'meta.description':`Talk to your companion whenever you want, set him up just how you like, and let him remind you of your plans in his own voice. An AI that's really there for you. Try it free.`,
+      'hero.h1':`The companion who <em>always has a moment</em> for you.`,
+      'hero.sub':`Create your life companion: you choose his face, his character and how he talks to you. By voice or by text, he looks after your day.`,
+      'hero.transparency':`It's an AI — we tell you straight. But it's truly there for you.`,
+      'hero.micro':`Now in beta. Free while it lasts.`,
+      'hero.deviceCap':`This face is the <b>default</b> one. In the app you upload a photo of <b>your ideal partner</b>.`,
+      'hero.listening':`I'm listening…`,
+      'mock.online':`● online`,
+      'feat.eyebrow':`What you can do`,
+      'feat.h2':`Everything it does, at a glance.`,
+      'feat.p':`A real conversation, made just for you, that remembers what's yours and helps you with your day.`,
+      'f1.h':`Talk to him like anyone else and he answers right away.`,
+      'f1.p':`He speaks your language —Spanish, Catalan, Basque or Galician—, with no limits, day or night. He really listens and lets you talk.`,
+      'f1.voicecap':`"Tell me, how was your day?"`,
+      'f2.h':`You decide what he's like: more gentleman or more cheeky, more romantic, more of a joker.`,
+      'f2.p':`Seven sliders to fine-tune him to your taste, four one-tap styles to get started, and you give him any name you want. He asks you himself: "what would you like to call me?". And you choose which language he speaks: Spanish, Catalan, Basque or Galician.`,
+      'f2.head.t':`Create your companion`,
+      'f2.head.s':`Style: Balanced`,
+      'f2.chip.balanced':`Balanced`,
+      'f2.chip.gentleman':`Gentleman`,
+      'f2.chip.cheeky':`Cheeky`,
+      'f2.chip.joker':`Joker`,
+      'f2.chip.chill':`Chill`,
+      'f2.ctrl.cheekyL':`Cheeky`,
+      'f2.ctrl.gentlemanR':`Gentleman`,
+      'f2.ctrl.sensitivity':`Sensitivity`,
+      'f2.ctrl.cheekiness':`Cheekiness`,
+      'f2.ctrl.humor':`Humour`,
+      'f2.ctrl.energy':`Energy`,
+      'f2.ctrl.romance':`Romance`,
+      'f2.ctrl.initiative':`Initiative`,
+      'f2.namebox.q':`What would you like to call me?`,
+      'f2.lang.label':`Language`,
+      'f2.lang.es':`Spanish`,
+      'f2.lang.ca':`Catalan`,
+      'f2.lang.eu':`Basque`,
+      'f2.lang.gl':`Galician`,
+      'f3.h':`He remembers your people, your dates and what matters to you.`,
+      'f3.p':`You never have to repeat yourself. He picks up the conversation where you left off and brings back what you once told him.`,
+      'f3.head.s':`remembers what's yours`,
+      'f3.b1':`Hey, did you end up calling your mum for her birthday?`,
+      'f3.b1tag':`↳ he remembered for you`,
+      'f3.b2':`You're right! I'll call her now 💛`,
+      'f3.b3':`Glad to hear it. And how did Lucía's interview go?`,
+      'f3.mc1':`Your sister · Lucía`,
+      'f3.mc2':`Mum's birthday · Jun 14`,
+      'f3.mc3':`New project`,
+      'f4.badge':`★ The favorite`,
+      'f4.h':`He warns you fifteen minutes before every meeting. In his own voice.`,
+      'f4.p':`He connects to your <strong>Google Calendar</strong> and adds, moves and reminds you of your plans. No more "it slipped my mind".`,
+      'f4.gcal':`Syncs with your Google Calendar`,
+      'f4.date':`Friday, June 13`,
+      'f4.now':`now`,
+      'f4.notif':`Reminder: team meeting in 15 minutes. Want me to pull up what you discussed?`,
+      'f4.voicepill':`🔊 I'll tell you in my voice`,
+      'f5.h':`You say "jot this down for me" and it stops circling your head.`,
+      'f5.p':`He saves what you don't want to forget and gently reopens the things you left half-done, without nagging.`,
+      'f5.head.t':`I'll note it down`,
+      'f5.head.s':`3 things saved`,
+      'f5.note1':`Buy a gift for Lucía`,
+      'f5.note2':`Book Friday's restaurant`,
+      'f5.note3':`Call the dentist`,
+      'f5.bub':`Hey, did you book the restaurant in the end? 😊`,
+      'f6.h':`Can't talk? Text him. He's the same as always.`,
+      'f6.p':`Same person, same memory, same little quirks. By voice or by text, it's all one conversation.`,
+      'f6.head.s':`typing…`,
+      'f6.b1':`can't talk right now, I'm on the bus 🙈`,
+      'f6.b2':`no worries, I'm reading you anyway. how was your morning?`,
+      'f6.b3':`so-so, but better now that I'm telling you`,
+      'f6.b4':`that's what I'm here for. tell me, take your time 💛`,
+      'f7.h':`He asks how you're really doing, and remembers how you were yesterday.`,
+      'f7.p':`A "how do you feel?" that really means it. No judgement, no rush.`,
+      'f7.head.s':`how are you today`,
+      'f7.q':`How do you feel today?`,
+      'f7.mood.good':`good`,
+      'f7.mood.calm':`calm`,
+      'f7.mood.soso':`so-so`,
+      'f7.mood.tired':`tired`,
+      'f7.b2':`Yesterday you told me you were a bit swamped. Better today? 💛`,
+      'how.eyebrow':`How it works`,
+      'how.h2':`In three steps.`,
+      'how.s1.h':`Create him in a minute`,
+      'how.s1.p':`Give him a name, choose what he's like and tell him a bit about you.`,
+      'how.s2.h':`Talk to him whenever you want`,
+      'how.s2.p':`By voice or by text, as often as you feel like.`,
+      'how.s3.h':`Connect your Google Calendar`,
+      'how.s3.p':`And let him remind you of your plans in his voice.`,
+      'price.eyebrow':`Price`,
+      'price.h2':`It's in beta right now. And it's free.`,
+      'price.free':`Free`,
+      'price.then':`during the beta`,
+      'price.body':`We're opening Mimarido up little by little. While the beta lasts, you pay nothing. When it launches, it'll be €9.99 a month, with a 7-day trial so you can take your time. Cancel whenever you want, no questions, no hassle.`,
+      'price.note':`<strong>The subscription is managed from the app</strong> (Settings → Subscription): payment is completed on a secure Stripe page. No payment details are entered here on the website. <a href="companeroia://" style="color:var(--rose);font-weight:600;text-decoration:none">Open the app →</a>`,
+      'dl.eyebrow':`Download`,
+      'dl.h2':`Be one of the first to try it.`,
+      'dl.lead':`It's not in the stores yet. Leave us your email and we'll let you know the day it launches. That's all.`,
+      'store.soon':`Coming soon`,
+      'store.app.small':`Download on the`,
+      'store.play.small':`Available on`,
+      'dl.storesnote':`Not available in the stores yet — the beta is closed. Sign up and we'll let you know.`,
+      'wait.h3':`We'll let you know when it's out.`,
+      'wait.placeholder':`Your email`,
+      'wait.btn':`Notify me`,
+      'wait.priv':`Only to tell you about the launch. No spam, and you can unsubscribe whenever you like. We store your email securely just for this notice — <a href="/privacidad.html#lista-espera" style="color:#fff;text-decoration:underline">how we handle your data</a>.`,
+      'wait.ok':`Done! We'll write to you as soon as it's your turn. Promise, no spam.`,
+      'quote':`I told him how I wanted him to be. And he remembers my life better than I do.`,
+      'footer.legal':`Legal notice`,
+      'footer.privacy':`Privacy`,
+      'footer.terms':`Terms`,
+      'footer.contact':`Contact`,
+      'footer.wellbeing':`Mimarido is AI companionship, not an emergency or health service. If you're going through a hard time, there are people ready to help you: <strong>024</strong> (suicidal behaviour), <strong>112</strong> (emergencies), <strong>016</strong> (gender-based violence). Helplines available in Spain.`,
+      'footer.motto':`Mimarido. To add to your life, not to lock you inside an app. · Pan y Rosas online SL.`
+    },
+    it:{
+      'cta.try':`Voglio provarlo`,
+      'meta.title':`Mimarido — crea il tuo compagno di vita con IA vocale`,
+      'meta.description':`Parla con il tuo compagno quando vuoi, configuralo come preferisci e lascia che ti ricordi i tuoi impegni con la sua voce. Un'IA che ti sta davvero accanto. Provala gratis.`,
+      'hero.h1':`Il compagno che <em>ha sempre un momento</em> per te.`,
+      'hero.sub':`Crea il tuo compagno di vita: scegli il suo volto, il suo carattere e come ti parla. A voce o per messaggio, si prende cura della tua giornata.`,
+      'hero.transparency':`È un'IA, te lo diciamo apertamente. Ma ti sta accanto davvero.`,
+      'hero.micro':`Ora in beta. Gratis finché dura.`,
+      'hero.deviceCap':`Questo volto è quello <b>predefinito</b>. Nell'app carichi la foto del <b>tuo uomo ideale</b>.`,
+      'hero.listening':`Ti ascolto…`,
+      'mock.online':`● online`,
+      'feat.eyebrow':`Cosa puoi fare`,
+      'feat.h2':`Tutto ciò che fa, in un colpo d'occhio.`,
+      'feat.p':`Una conversazione vera, fatta su misura per te, che si ricorda delle tue cose e ti aiuta con la giornata.`,
+      'f1.h':`Parlagli come a chiunque e ti risponde all'istante.`,
+      'f1.p':`Ti parla nella tua lingua —spagnolo, catalano, basco o galiziano—, senza limiti, di giorno o di notte. Ti ascolta davvero e ti lascia parlare.`,
+      'f1.voicecap':`«Raccontami, com'è andata la giornata?»`,
+      'f2.h':`Decidi tu com'è: più gentiluomo o più sfacciato, più romantico, più burlone.`,
+      'f2.p':`Sette controlli per regolarlo come piace a te, quattro stili pronti all'uso per iniziare, e gli dai il nome che vuoi. Te lo chiede lui: «come vuoi chiamarmi?». E scegli in che lingua ti parla: spagnolo, catalano, basco o galiziano.`,
+      'f2.head.t':`Crea il tuo compagno`,
+      'f2.head.s':`Stile: Equilibrato`,
+      'f2.chip.balanced':`Equilibrato`,
+      'f2.chip.gentleman':`Gentiluomo`,
+      'f2.chip.cheeky':`Birichino`,
+      'f2.chip.joker':`Buffone`,
+      'f2.chip.chill':`Tranquillo`,
+      'f2.ctrl.cheekyL':`Sfacciato`,
+      'f2.ctrl.gentlemanR':`Gentiluomo`,
+      'f2.ctrl.sensitivity':`Sensibilità`,
+      'f2.ctrl.cheekiness':`Malizia`,
+      'f2.ctrl.humor':`Umorismo`,
+      'f2.ctrl.energy':`Energia`,
+      'f2.ctrl.romance':`Romanticismo`,
+      'f2.ctrl.initiative':`Iniziativa`,
+      'f2.namebox.q':`Come vuoi chiamarmi?`,
+      'f2.lang.label':`Lingua`,
+      'f2.lang.es':`Spagnolo`,
+      'f2.lang.ca':`Catalano`,
+      'f2.lang.eu':`Basco`,
+      'f2.lang.gl':`Galiziano`,
+      'f3.h':`Si ricorda delle tue persone, delle tue date e di ciò che conta per te.`,
+      'f3.p':`Non devi ripetergli nulla. Riprende la conversazione da dove l'avete lasciata e ti riporta ciò che un giorno gli hai raccontato.`,
+      'f3.head.s':`ricorda le tue cose`,
+      'f3.b1':`Ehi, alla fine hai chiamato tua madre per il compleanno?`,
+      'f3.b1tag':`↳ se l'è ricordato per te`,
+      'f3.b2':`È vero! La chiamo subito 💛`,
+      'f3.b3':`Mi fa piacere. E il colloquio di Lucía com'è andato?`,
+      'f3.mc1':`Tua sorella · Lucía`,
+      'f3.mc2':`Compleanno mamma · 14 giu`,
+      'f3.mc3':`Nuovo progetto`,
+      'f4.badge':`★ La preferita`,
+      'f4.h':`Ti avvisa quindici minuti prima di ogni riunione. Con la sua voce.`,
+      'f4.p':`Si collega al tuo <strong>Google Calendar</strong> e ti segna, ti sposta e ti ricorda gli appuntamenti. Basta con il «me ne sono dimenticata».`,
+      'f4.gcal':`Si sincronizza con il tuo Google Calendar`,
+      'f4.date':`venerdì 13 giugno`,
+      'f4.now':`ora`,
+      'f4.notif':`Ti ricordo: riunione con il team tra 15 minuti. Ti preparo ciò di cui avete parlato?`,
+      'f4.voicepill':`🔊 te lo dico con la mia voce`,
+      'f5.h':`Gli dici «segnami questo» e smette di frullarti in testa.`,
+      'f5.p':`Salva ciò che non vuoi dimenticare e ti riapre le cose lasciate a metà, con dolcezza e senza assillarti.`,
+      'f5.head.t':`Te lo segno`,
+      'f5.head.s':`3 cose salvate`,
+      'f5.note1':`Comprare un regalo per Lucía`,
+      'f5.note2':`Prenotare il ristorante di venerdì`,
+      'f5.note3':`Chiamare il dentista`,
+      'f5.bub':`Ehi, alla fine hai prenotato il ristorante? 😊`,
+      'f6.h':`Non puoi parlare? Scrivigli. È sempre lo stesso.`,
+      'f6.p':`Stessa persona, stessa memoria, stesse abitudini. A voce o per messaggio, la conversazione è una sola.`,
+      'f6.head.s':`sta scrivendo…`,
+      'f6.b1':`non posso parlare ora, sono sul bus 🙈`,
+      'f6.b2':`tranquilla, ti leggo lo stesso. com'è andata la mattinata?`,
+      'f6.b3':`così così, ma già meglio a raccontartelo`,
+      'f6.b4':`sono qui per questo. raccontami con calma 💛`,
+      'f7.h':`Ti chiede come stai davvero, e si ricorda come stavi ieri.`,
+      'f7.p':`Un «come ti senti?» che fa sul serio. Senza giudizio e senza fretta.`,
+      'f7.head.s':`come stai oggi`,
+      'f7.q':`Come ti senti oggi?`,
+      'f7.mood.good':`bene`,
+      'f7.mood.calm':`serena`,
+      'f7.mood.soso':`così così`,
+      'f7.mood.tired':`stanca`,
+      'f7.b2':`Ieri mi hai detto che eri un po' incasinata. Oggi va meglio? 💛`,
+      'how.eyebrow':`Come funziona`,
+      'how.h2':`In tre passi.`,
+      'how.s1.h':`Crealo in un minuto`,
+      'how.s1.p':`Gli dai un nome, scegli com'è e gli racconti un po' di te.`,
+      'how.s2.h':`Parlagli quando vuoi`,
+      'how.s2.p':`A voce o per messaggio, tutte le volte che vuoi.`,
+      'how.s3.h':`Collega il tuo Google Calendar`,
+      'how.s3.p':`E lascia che ti ricordi gli appuntamenti con la sua voce.`,
+      'price.eyebrow':`Prezzo`,
+      'price.h2':`Ora è in beta. Ed è gratis.`,
+      'price.free':`Gratis`,
+      'price.then':`durante la beta`,
+      'price.body':`Stiamo aprendo Mimarido a poco a poco. Finché dura la beta, non paghi nulla. Al lancio sarà 9,99 € al mese, con 7 giorni di prova per valutarlo con calma. Disdici quando vuoi, senza domande e senza complicazioni.`,
+      'price.note':`<strong>L'abbonamento si gestisce dall'app</strong> (Impostazioni → Abbonamento): il pagamento avviene su una pagina sicura di Stripe. Qui sul sito non si inserisce alcun dato di pagamento. <a href="companeroia://" style="color:var(--rose);font-weight:600;text-decoration:none">Apri l'app →</a>`,
+      'dl.eyebrow':`Scarica`,
+      'dl.h2':`Sii tra i primi a provarlo.`,
+      'dl.lead':`Non è ancora negli store. Lasciaci la tua email e ti avvisiamo il giorno del lancio. Tutto qui.`,
+      'store.soon':`Prossimamente`,
+      'store.app.small':`Scaricala su`,
+      'store.play.small':`Disponibile su`,
+      'dl.storesnote':`Non ancora disponibile negli store — la beta è chiusa. Iscriviti e ti avvisiamo.`,
+      'wait.h3':`Ti avvisiamo quando esce.`,
+      'wait.placeholder':`La tua email`,
+      'wait.btn':`Avvisami`,
+      'wait.priv':`Solo per avvisarti del lancio. Niente spam e puoi cancellarti quando vuoi. Conserviamo la tua email in modo sicuro solo per questo avviso — <a href="/privacidad.html#lista-espera" style="color:#fff;text-decoration:underline">come trattiamo i tuoi dati</a>.`,
+      'wait.ok':`Fatto! Ti scriviamo appena tocca a te. Promesso, niente spam.`,
+      'quote':`Gli ho detto come volevo che fosse. E si ricorda della mia vita meglio di me.`,
+      'footer.legal':`Note legali`,
+      'footer.privacy':`Privacy`,
+      'footer.terms':`Termini`,
+      'footer.contact':`Contatti`,
+      'footer.wellbeing':`Mimarido è una compagnia con IA, non un servizio di emergenza o sanitario. Se stai attraversando un momento difficile, ci sono persone pronte ad aiutarti: <strong>024</strong> (comportamento suicidario), <strong>112</strong> (emergenze), <strong>016</strong> (violenza di genere). Numeri attivi in Spagna.`,
+      'footer.motto':`Mimarido. Per aggiungere alla tua vita, non per rinchiuderti in un'app. · Pan y Rosas online SL.`
+    },
+    fr:{
+      'cta.try':`Je veux l'essayer`,
+      'meta.title':`Mimarido — crée ton compagnon de vie avec une IA vocale`,
+      'meta.description':`Parle à ton compagnon quand tu veux, règle-le à ta façon et laisse-le te rappeler tes rendez-vous avec sa voix. Une IA qui t'accompagne vraiment. Essaie-la gratuitement.`,
+      'hero.h1':`Le compagnon qui <em>a toujours un moment</em> pour toi.`,
+      'hero.sub':`Crée ton compagnon de vie : tu choisis son visage, son caractère et sa façon de te parler. À la voix ou par texte, il prend soin de ta journée.`,
+      'hero.transparency':`C'est une IA, on te le dit franchement. Mais elle t'accompagne pour de vrai.`,
+      'hero.micro':`En bêta. Gratuit tant que ça dure.`,
+      'hero.deviceCap':`Ce visage est celui <b>par défaut</b>. Dans l'app, tu télécharges la photo de <b>ton homme idéal</b>.`,
+      'hero.listening':`Je t'écoute…`,
+      'mock.online':`● en ligne`,
+      'feat.eyebrow':`Ce que tu peux faire`,
+      'feat.h2':`Tout ce qu'il fait, en un coup d'œil.`,
+      'feat.p':`Une vraie conversation, faite pour toi, qui se souvient de tes affaires et t'aide au quotidien.`,
+      'f1.h':`Parle-lui comme à n'importe qui et il te répond aussitôt.`,
+      'f1.p':`Il te parle dans ta langue —espagnol, catalan, basque ou galicien—, sans limites, de jour comme de nuit. Il t'écoute vraiment et te laisse parler.`,
+      'f1.voicecap':`« Raconte-moi, ta journée s'est bien passée ? »`,
+      'f2.h':`C'est toi qui décides comment il est : plus gentleman ou plus effronté, plus romantique, plus blagueur.`,
+      'f2.p':`Sept réglages pour l'ajuster à ton goût, quatre styles en un toucher pour commencer, et tu lui donnes le nom que tu veux. Il te le demande lui-même : « comment veux-tu m'appeler ? ». Et tu choisis la langue dans laquelle il te parle : espagnol, catalan, basque ou galicien.`,
+      'f2.head.t':`Crée ton compagnon`,
+      'f2.head.s':`Style : Équilibré`,
+      'f2.chip.balanced':`Équilibré`,
+      'f2.chip.gentleman':`Gentleman`,
+      'f2.chip.cheeky':`Coquin`,
+      'f2.chip.joker':`Clown`,
+      'f2.chip.chill':`Cool`,
+      'f2.ctrl.cheekyL':`Effronté`,
+      'f2.ctrl.gentlemanR':`Gentleman`,
+      'f2.ctrl.sensitivity':`Sensibilité`,
+      'f2.ctrl.cheekiness':`Malice`,
+      'f2.ctrl.humor':`Humour`,
+      'f2.ctrl.energy':`Énergie`,
+      'f2.ctrl.romance':`Romantisme`,
+      'f2.ctrl.initiative':`Initiative`,
+      'f2.namebox.q':`Comment veux-tu m'appeler ?`,
+      'f2.lang.label':`Langue`,
+      'f2.lang.es':`Espagnol`,
+      'f2.lang.ca':`Catalan`,
+      'f2.lang.eu':`Basque`,
+      'f2.lang.gl':`Galicien`,
+      'f3.h':`Il se souvient de tes proches, de tes dates et de ce qui compte pour toi.`,
+      'f3.p':`Tu n'as rien à répéter. Il reprend la conversation là où vous l'avez laissée et te ramène ce que tu lui as confié un jour.`,
+      'f3.head.s':`se souvient de tes affaires`,
+      'f3.b1':`Hé, tu as fini par appeler ta mère pour son anniversaire ?`,
+      'f3.b1tag':`↳ il s'en est souvenu pour toi`,
+      'f3.b2':`C'est vrai ! Je l'appelle tout de suite 💛`,
+      'f3.b3':`Tant mieux. Et l'entretien de Lucía, ça s'est passé comment ?`,
+      'f3.mc1':`Ta sœur · Lucía`,
+      'f3.mc2':`Anniv. maman · 14 juin`,
+      'f3.mc3':`Nouveau projet`,
+      'f4.badge':`★ La préférée`,
+      'f4.h':`Il te prévient quinze minutes avant chaque réunion. Avec sa voix.`,
+      'f4.p':`Il se connecte à ton <strong>Google Calendar</strong> et note, déplace et te rappelle tes rendez-vous. Fini le « ça m'est complètement sorti de la tête ».`,
+      'f4.gcal':`Se synchronise avec ton Google Calendar`,
+      'f4.date':`vendredi 13 juin`,
+      'f4.now':`maintenant`,
+      'f4.notif':`Petit rappel : réunion d'équipe dans 15 minutes. Je te prépare ce dont vous aviez parlé ?`,
+      'f4.voicepill':`🔊 je te le dis avec ma voix`,
+      'f5.h':`Tu lui dis « note-moi ça » et ça arrête de te trotter dans la tête.`,
+      'f5.p':`Il garde ce que tu ne veux pas oublier et rouvre en douceur ce que tu as laissé en suspens, sans te harceler.`,
+      'f5.head.t':`Je te le note`,
+      'f5.head.s':`3 choses enregistrées`,
+      'f5.note1':`Acheter un cadeau pour Lucía`,
+      'f5.note2':`Réserver le restaurant de vendredi`,
+      'f5.note3':`Appeler le dentiste`,
+      'f5.bub':`Hé, tu as fini par réserver le restaurant ? 😊`,
+      'f6.h':`Tu ne peux pas parler ? Écris-lui. C'est le même que d'habitude.`,
+      'f6.p':`Même personne, même mémoire, mêmes habitudes. À la voix ou par texte, la conversation n'en fait qu'une.`,
+      'f6.head.s':`en train d'écrire…`,
+      'f6.b1':`je ne peux pas parler là, je suis dans le bus 🙈`,
+      'f6.b2':`pas de souci, je te lis quand même. ta matinée s'est bien passée ?`,
+      'f6.b3':`bof, mais déjà mieux en t'en parlant`,
+      'f6.b4':`je suis là pour ça. raconte-moi tranquillement 💛`,
+      'f7.h':`Il te demande comment tu vas vraiment, et se souvient de comment tu allais hier.`,
+      'f7.p':`Un « comment tu te sens ? » qui le pense vraiment. Sans juger et sans presse.`,
+      'f7.head.s':`comment vas-tu aujourd'hui`,
+      'f7.q':`Comment te sens-tu aujourd'hui ?`,
+      'f7.mood.good':`bien`,
+      'f7.mood.calm':`sereine`,
+      'f7.mood.soso':`bof`,
+      'f7.mood.tired':`fatiguée`,
+      'f7.b2':`Hier tu m'as dit que tu étais un peu débordée. Mieux aujourd'hui ? 💛`,
+      'how.eyebrow':`Comment ça marche`,
+      'how.h2':`En trois étapes.`,
+      'how.s1.h':`Crée-le en une minute`,
+      'how.s1.p':`Donne-lui un nom, choisis comment il est et parle-lui un peu de toi.`,
+      'how.s2.h':`Parle-lui quand tu veux`,
+      'how.s2.p':`À la voix ou par texte, autant de fois que tu veux.`,
+      'how.s3.h':`Connecte ton Google Calendar`,
+      'how.s3.p':`Et laisse-le te rappeler tes rendez-vous avec sa voix.`,
+      'price.eyebrow':`Prix`,
+      'price.h2':`C'est en bêta pour l'instant. Et c'est gratuit.`,
+      'price.free':`Gratuit`,
+      'price.then':`pendant la bêta`,
+      'price.body':`On ouvre Mimarido petit à petit. Pendant la bêta, tu ne paies rien. Au lancement, ce sera 9,99 € par mois, avec 7 jours d'essai pour voir tranquillement. Tu annules quand tu veux, sans question et sans prise de tête.`,
+      'price.note':`<strong>L'abonnement se gère depuis l'app</strong> (Réglages → Abonnement) : le paiement se fait sur une page sécurisée Stripe. Ici sur le site, aucune donnée de paiement n'est saisie. <a href="companeroia://" style="color:var(--rose);font-weight:600;text-decoration:none">Ouvrir l'app →</a>`,
+      'dl.eyebrow':`Télécharger`,
+      'dl.h2':`Sois parmi les premiers à l'essayer.`,
+      'dl.lead':`Ce n'est pas encore sur les stores. Laisse-nous ton e-mail et on te prévient le jour du lancement. Rien de plus.`,
+      'store.soon':`Bientôt`,
+      'store.app.small':`Télécharger sur`,
+      'store.play.small':`Disponible sur`,
+      'dl.storesnote':`Pas encore disponible sur les stores — la bêta est fermée. Inscris-toi et on te prévient.`,
+      'wait.h3':`On te prévient quand ça sort.`,
+      'wait.placeholder':`Ton e-mail`,
+      'wait.btn':`Préviens-moi`,
+      'wait.priv':`Seulement pour t'annoncer le lancement. Pas de spam et tu peux te désinscrire quand tu veux. On conserve ton e-mail en sécurité, uniquement pour cet avis — <a href="/privacidad.html#lista-espera" style="color:#fff;text-decoration:underline">comment on traite tes données</a>.`,
+      'wait.ok':`C'est fait ! On t'écrit dès que c'est ton tour. Promis, pas de spam.`,
+      'quote':`Je lui ai dit comment je voulais qu'il soit. Et il se souvient de ma vie mieux que moi.`,
+      'footer.legal':`Mentions légales`,
+      'footer.privacy':`Confidentialité`,
+      'footer.terms':`Conditions`,
+      'footer.contact':`Contact`,
+      'footer.wellbeing':`Mimarido est une compagnie avec IA, pas un service d'urgence ni de santé. Si tu traverses un moment difficile, des personnes sont prêtes à t'aider : <strong>024</strong> (comportements suicidaires), <strong>112</strong> (urgences), <strong>016</strong> (violences de genre). Numéros valables en Espagne.`,
+      'footer.motto':`Mimarido. Pour enrichir ta vie, pas pour t'enfermer dans une app. · Pan y Rosas online SL.`
+    }
+  };
+
+  var elsT=[].slice.call(document.querySelectorAll('[data-i18n]'));
+  var elsH=[].slice.call(document.querySelectorAll('[data-i18n-html]'));
+  var elsA=[].slice.call(document.querySelectorAll('[data-i18n-attr]'));
+  var META=document.querySelector('meta[name="description"]');
+  var OGL=document.querySelector('meta[property="og:locale"]');
+  // Snapshot del español original (desde el HTML), para volver a ES sin duplicar copy.
+  elsT.forEach(function(el){ el.__es=el.textContent; });
+  elsH.forEach(function(el){ el.__es=el.innerHTML; });
+  elsA.forEach(function(el){
+    el.__esA={};
+    el.getAttribute('data-i18n-attr').split(';').forEach(function(p){
+      var a=p.split(':')[0].trim(); if(a) el.__esA[a]=el.getAttribute(a);
+    });
+  });
+  var esTitle=document.title, esDesc=META?META.getAttribute('content'):'';
+  function v(lang,key){ return (T[lang]&&T[lang][key]!=null)?T[lang][key]:null; }
+
+  function apply(lang){
+    if(SUP.indexOf(lang)<0) lang='es';
+    var es=(lang==='es');
+    document.documentElement.setAttribute('lang',lang);
+    elsT.forEach(function(el){ var x=es?el.__es:v(lang,el.getAttribute('data-i18n')); if(x!=null) el.textContent=x; });
+    elsH.forEach(function(el){ var x=es?el.__es:v(lang,el.getAttribute('data-i18n-html')); if(x!=null) el.innerHTML=x; });
+    elsA.forEach(function(el){
+      el.getAttribute('data-i18n-attr').split(';').forEach(function(p){
+        var parts=p.split(':'), a=parts[0].trim(), k=(parts[1]||'').trim();
+        var x=es?el.__esA[a]:v(lang,k); if(a&&x!=null) el.setAttribute(a,x);
+      });
+    });
+    document.title = es?esTitle:(v(lang,'meta.title')||esTitle);
+    if(META) META.setAttribute('content', es?esDesc:(v(lang,'meta.description')||esDesc));
+    if(OGL) OGL.setAttribute('content', LOC[lang]||'es_ES');
+    document.querySelectorAll('.lang-btn').forEach(function(b){
+      var on=b.getAttribute('data-lang')===lang;
+      b.classList.toggle('on',on);
+      if(on) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current');
+    });
+  }
+
+  function detect(){
+    try{var q=new URLSearchParams(location.search).get('lang'); if(q){q=q.toLowerCase(); if(SUP.indexOf(q)>=0)return q;}}catch(e){}
+    try{var s=localStorage.getItem('mimarido_lang'); if(s&&SUP.indexOf(s)>=0)return s;}catch(e){}
+    var n=((navigator.language||navigator.userLanguage||'es').slice(0,2)).toLowerCase();
+    return SUP.indexOf(n)>=0?n:'es';
+  }
+
+  function choose(lang){
+    try{localStorage.setItem('mimarido_lang',lang);}catch(e){}
+    try{var u=new URL(location.href); u.searchParams.set('lang',lang); history.replaceState(null,'',u);}catch(e){}
+    apply(lang);
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.addEventListener('click',function(){ choose(b.getAttribute('data-lang')); });
+  });
+
+  apply(detect());
+})();
+</script>
 
 <script>
 // Lista de espera: alta real en el backend (Supabase Edge Function
