@@ -86,7 +86,7 @@ header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(140%) blur(10px
 .hero .transparency .dot{width:8px;height:8px;border-radius:50%;background:#F7DCD2;flex:none}
 .hero .cta-row{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
 .hero .micro{font-size:14px;color:rgba(250,248,245,.8)}
-.hero-visual{display:flex;justify-content:center}
+.hero-visual{display:flex;flex-direction:column;align-items:center;justify-content:center}
 @media(max-width:820px){
   .hero-grid{grid-template-columns:1fr;text-align:center}
   .hero .sub{margin-left:auto;margin-right:auto}
@@ -99,13 +99,15 @@ header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(140%) blur(10px
   box-shadow:var(--shadow),0 0 0 1px rgba(255,255,255,.06) inset;position:relative}
 .device .scr{border-radius:34px;overflow:hidden;background:var(--cream);height:556px;position:relative;
   display:flex;flex-direction:column;color:var(--ink)}
+.device .scr.scr-config{height:auto;min-height:556px;padding-bottom:14px}
 .notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:116px;height:23px;
   background:#1C1614;border-radius:0 0 15px 15px;z-index:6}
 .sbar{display:flex;justify-content:space-between;align-items:center;padding:11px 20px 3px;font-size:11px;
   font-weight:600;color:var(--ink);opacity:.6}
 .sbar .r{display:flex;gap:5px}
 .scr-head{padding:6px 18px 10px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
-.scr-head .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(150deg,#DCB6CC,#8B5A7D);flex:none}
+.scr-head .av{width:30px;height:30px;border-radius:50%;flex:none;
+  background:#E8DFE6 center/cover no-repeat;background-image:url("assets/marido-default.png")}
 .scr-head .t{font-size:15px;font-weight:600;letter-spacing:-.2px}
 .scr-head .s{font-size:11px;color:var(--rose);font-weight:600}
 .scr-body{flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
@@ -128,11 +130,22 @@ header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(140%) blur(10px
 .voice-cap{font-size:14px;color:var(--muted)}
 .mic{width:62px;height:62px;border-radius:50%;background:var(--rose);display:flex;align-items:center;
   justify-content:center;box-shadow:0 14px 28px -10px rgba(139,90,125,.8)}
+.face{width:150px;height:150px;border-radius:50%;flex:none;
+  background:#E8DFE6 center 18%/cover no-repeat;background-image:url("assets/marido-default.png");
+  box-shadow:0 24px 50px -18px rgba(94,59,84,.55),0 0 0 4px rgba(255,255,255,.9),0 0 0 7px rgba(139,90,125,.22);
+  animation:breathe 4s ease-in-out infinite}
+.face-cap{font-size:11.5px;color:var(--muted);text-align:center;max-width:24ch;line-height:1.35;margin-top:-6px}
+.face-cap b{color:var(--rose-deep);font-weight:600}
+.device-cap{margin-top:16px;font-size:13.5px;color:rgba(255,253,251,.94);text-align:center;max-width:30ch;
+  line-height:1.45;margin-left:auto;margin-right:auto;text-shadow:0 1px 10px rgba(45,26,40,.4)}
+.device-cap b{color:#FBE4DA;font-weight:600}
 
 /* config screen */
 .preset-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:4px}
 .chip{font-size:12px;padding:6px 11px;border-radius:9999px;background:#fff;border:1px solid var(--border);color:var(--muted);font-weight:600}
 .chip.on{background:var(--rose-light);border-color:#E0C4D6;color:var(--rose-deep)}
+.lang-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:8px}
+.lang-row .lang-label{font-size:12px;color:var(--muted);font-weight:600;margin-right:2px;width:100%}
 .ctrl{display:flex;flex-direction:column;gap:3px}
 .ctrl .lab{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);font-weight:600}
 .track{height:6px;border-radius:9999px;background:var(--surface);position:relative}
@@ -298,7 +311,7 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <h1>El compañero que <em>siempre tiene un rato</em> para ti.</h1>
-      <p class="sub">Crea a tu compañero de vida, habla con él por voz o por texto y deja que te cuide el día. Hecho en España.</p>
+      <p class="sub">Crea a tu compañero de vida: eliges su cara, su carácter y cómo te habla. Por voz o por texto, te cuida el día.</p>
       <span class="transparency"><span class="dot"></span> Es una IA, te lo decimos de frente. Pero te acompaña de verdad.</span>
       <div class="cta-row">
         <a class="btn btn-light" href="#descarga">Quiero probarlo</a>
@@ -313,7 +326,7 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
           <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
           <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s">● en línea</div></div></div>
           <div class="scr-body voice-screen">
-            <div class="orb"></div>
+            <div class="face"></div>
             <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
             <div class="voice-cap">Te escucho…</div>
             <div class="mic">
@@ -322,6 +335,7 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
           </div>
         </div>
       </div>
+      <p class="device-cap">Esta cara viene <b>por defecto</b>. En la app subes la foto de <b>tu marido ideal</b>.</p>
     </div>
   </div>
 </section>
@@ -339,14 +353,14 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
     <div class="feat-text">
       <span class="feat-num">1</span>
       <div class="fh">Háblale como a cualquiera y te responde al momento.</div>
-      <p class="fp">Español de aquí, conversaciones sin límite, de día o de madrugada. Te escucha de verdad y te deja hablar.</p>
+      <p class="fp">Te habla en tu idioma —español, català, euskara o galego—, sin límites, de día o de madrugada. Te escucha de verdad y te deja hablar.</p>
     </div>
     <div class="feat-media">
       <div class="device"><div class="notch"></div><div class="scr">
         <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
         <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s">● en línea</div></div></div>
         <div class="scr-body voice-screen">
-          <div class="orb"></div>
+          <div class="face"></div>
           <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
           <div class="voice-cap">«Cuéntame, ¿qué tal el día?»</div>
         </div>
@@ -359,10 +373,10 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
     <div class="feat-text">
       <span class="feat-num">2</span>
       <div class="fh">Tú decides cómo es: más caballero o más chulito, más romántico, más bromista.</div>
-      <p class="fp">Siete controles para afinarlo a tu gusto, cuatro estilos de un toque para empezar, y le pones el nombre que quieras. Él te lo pregunta: «¿cómo quieres que me llame?».</p>
+      <p class="fp">Siete controles para afinarlo a tu gusto, cuatro estilos de un toque para empezar, y le pones el nombre que quieras. Él te lo pregunta: «¿cómo quieres que me llame?». Y eliges en qué idioma te habla: español, català, euskara o galego.</p>
     </div>
     <div class="feat-media">
-      <div class="device"><div class="notch"></div><div class="scr">
+      <div class="device"><div class="notch"></div><div class="scr scr-config">
         <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
         <div class="scr-head"><div><div class="t">Crea a tu compañero</div><div class="s">Estilo: Equilibrado</div></div></div>
         <div class="scr-body">
@@ -378,6 +392,7 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
           <div class="ctrl"><div class="lab"><span>Romanticismo</span></div><div class="track"><div class="fill" style="width:68%"></div><div class="knob" style="left:68%"></div></div></div>
           <div class="ctrl"><div class="lab"><span>Iniciativa</span></div><div class="track"><div class="fill" style="width:40%"></div><div class="knob" style="left:40%"></div></div></div>
           <div class="namebox"><div class="q">¿Cómo quieres que me llame?</div><div class="inp"><span>Mateo</span><span class="cur"></span></div></div>
+          <div class="lang-row"><span class="lang-label">Idioma</span><span class="chip on">Español</span><span class="chip">Català</span><span class="chip">Euskara</span><span class="chip">Galego</span></div>
         </div>
       </div></div>
     </div>
@@ -577,7 +592,7 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
       </nav>
     </div>
     <p class="wellbeing">Mimarido es una compañía con IA, no un servicio de emergencia ni de salud. Si lo estás pasando mal, hay personas preparadas para ayudarte: <strong>024</strong> (conducta suicida), <strong>112</strong> (emergencias), <strong>016</strong> (violencia de género).</p>
-    <p class="motto">Mimarido. Para sumar a tu vida, no para encerrarte en una app. · Hecho en España por Pan y Rosas online SL.</p>
+    <p class="motto">Mimarido. Para sumar a tu vida, no para encerrarte en una app. · Pan y Rosas online SL.</p>
   </div>
 </footer>
 
