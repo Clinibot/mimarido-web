@@ -565,7 +565,7 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
         <input type="email" id="email" name="email" placeholder="Tu correo" required autocomplete="email">
         <button class="btn btn-light" type="submit">Avisadme</button>
       </form>
-      <p class="priv">Solo para avisarte del lanzamiento. Sin spam y te puedes borrar cuando quieras.</p>
+      <p class="priv">Solo para avisarte del lanzamiento. Sin spam y te puedes borrar cuando quieras. Guardamos tu correo de forma segura solo para este aviso — <a href="/privacidad.html" style="color:#fff;text-decoration:underline">cómo tratamos tus datos</a>.</p>
       <p class="ok">¡Hecho! Te escribimos en cuanto te toque. Prometido, nada de spam.</p>
     </div>
   </div>
@@ -597,19 +597,42 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
 </footer>
 
 <script>
-// Lista de espera: sin backend ni almacenamiento propio (envelope legal R5').
-// Abre el cliente de correo de la usuaria con su mensaje pre-rellenado.
+// Lista de espera: alta real en el backend (Supabase Edge Function
+// waitlist-signup, SONA-701) en vez del mailto anterior (R5'). El correo se
+// guarda solo para avisar del lanzamiento; ver /privacidad.html. Si el backend
+// falla o aún no está desplegado, caemos al mailto para no perder ningún alta.
 (function(){
+  var ENDPOINT='https://fijsmtvcylzpznuyzmcg.supabase.co/functions/v1/waitlist-signup';
+  // anon key del proyecto: publicable por diseño (la seguridad la dan las RLS).
+  var ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpanNtdHZjeWx6cHpudXl6bWNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyNjMwMjcsImV4cCI6MjA5NjgzOTAyN30.US0p6RGp6HO9sOX3LswglTi-ETnkeMbod_x90I2Pbj8';
   var form=document.getElementById('waitForm');
   if(!form)return;
+  var wait=document.getElementById('wait');
+  var btn=form.querySelector('button');
+  function done(){ wait.classList.add('sent'); }      // muestra .ok, oculta el form
+  function fallbackMailto(email){
+    var subject=encodeURIComponent('Lista de espera Mimarido');
+    var body=encodeURIComponent('¡Hola! Quiero que me aviséis cuando Mimarido salga en las tiendas.\n\nMi correo: '+email);
+    window.location.href='mailto:info@mimarido.es?subject='+subject+'&body='+body;
+    done();
+  }
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var email=(document.getElementById('email').value||'').trim();
     if(!email)return;
-    var subject=encodeURIComponent('Lista de espera Mimarido');
-    var body=encodeURIComponent('¡Hola! Quiero que me aviséis cuando Mimarido salga en las tiendas.\n\nMi correo: '+email);
-    window.location.href='mailto:info@mimarido.es?subject='+subject+'&body='+body;
-    document.getElementById('wait').classList.add('sent');
+    if(btn)btn.disabled=true;
+    fetch(ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':ANON,'Authorization':'Bearer '+ANON},
+      body:JSON.stringify({email:email})
+    }).then(function(r){
+      if(!r.ok)throw new Error('http '+r.status);
+      done();
+    }).catch(function(){
+      fallbackMailto(email);
+    }).finally(function(){
+      if(btn)btn.disabled=false;
+    });
   });
 })();
 </script>
