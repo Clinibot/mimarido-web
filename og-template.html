@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<!-- Plantilla de la imagen Open Graph (1200x630). Render: Chrome headless --screenshot a og.png -->
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1200px;height:630px;overflow:hidden;
+  font-family:-apple-system,"Helvetica Neue","Segoe UI",Roboto,sans-serif}
+.og{width:1200px;height:630px;position:relative;color:#FAF8F5;overflow:hidden;
+  background:radial-gradient(120% 80% at 22% 8%, rgba(255,228,214,.20) 0%, rgba(255,228,214,0) 46%),
+             linear-gradient(118deg, #9C5E81 0%, #8B5A7D 32%, #6E4462 66%, #3F2438 100%)}
+.scrim{position:absolute;inset:0;
+  background:linear-gradient(100deg, rgba(45,26,40,.44) 0%, rgba(45,26,40,.14) 46%, rgba(45,26,40,0) 72%)}
+.brand{position:absolute;top:54px;left:72px;display:flex;align-items:center;gap:16px;z-index:2}
+.brand img{width:64px;height:64px;border-radius:15px;box-shadow:0 8px 20px -6px rgba(0,0,0,.4)}
+.brand .bn{font-size:34px;font-weight:600;letter-spacing:-.5px}
+.inner{position:relative;z-index:2;height:100%;padding:0 72px;display:flex;flex-direction:column;justify-content:center}
+.h{font-size:62px;font-weight:300;line-height:1.05;letter-spacing:-1.6px;max-width:690px;
+  text-shadow:0 2px 22px rgba(45,26,40,.45)}
+.h em{font-style:normal;color:#FBE4DA;font-weight:400}
+.s{margin-top:24px;font-size:27px;font-weight:300;max-width:560px;color:rgba(255,253,251,.95);
+  text-shadow:0 1px 12px rgba(45,26,40,.4)}
+.foot{position:absolute;bottom:50px;left:72px;z-index:2;font-size:24px;font-weight:500;color:rgba(255,253,251,.95)}
+.foot b{color:#FBE4DA}
+.face{position:absolute;right:98px;top:50%;transform:translateY(-50%);z-index:2;
+  width:344px;height:344px;border-radius:50%;
+  background:#E8DFE6 center 16%/cover no-repeat;background-image:url("assets/marido-default.png");
+  box-shadow:0 34px 70px -22px rgba(0,0,0,.5),0 0 0 7px rgba(255,255,255,.92),0 0 0 12px rgba(139,90,125,.3)}
+</style></head>
+<body>
+<div class="og">
+  <div class="scrim"></div>
+  <div class="brand"><img src="assets/mimarido-logo.png" alt=""><span class="bn">Mimarido</span></div>
+  <div class="inner">
+    <div class="h">El compañero que <em>siempre tiene un rato</em> para ti.</div>
+    <div class="s">Te escucha, te recuerda y te avisa de tus citas con su voz.</div>
+  </div>
+  <div class="face"></div>
+  <div class="foot">mimarido.es · <b>Ahora en beta, gratis</b></div>
+</div>
+</body></html>
