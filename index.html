@@ -3,33 +3,594 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mimarido — Suscripción</title>
+<title>Mimarido — crea a tu compañero de vida con IA de voz</title>
+<meta name="description" content="Habla con tu compañero cuando quieras, configúralo a tu gusto y deja que te avise de tus citas con su voz. Una IA que te acompaña de verdad. Pruébala gratis.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#8B5A7D">
+<link rel="canonical" href="https://mimarido.es/">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/assets/mimarido-logo.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Mimarido">
+<meta property="og:url" content="https://mimarido.es/">
+<meta property="og:title" content="Mimarido — crea a tu compañero de vida">
+<meta property="og:description" content="Te escucha, te recuerda y te avisa de tus citas con su voz. Una IA que te acompaña de verdad. Ahora en beta, gratis.">
+<meta property="og:image" content="https://mimarido.es/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mimarido — El compañero que siempre tiene un rato para ti.">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mimarido — crea a tu compañero de vida">
+<meta name="twitter:description" content="Te escucha, te recuerda y te avisa de tus citas con su voz. Una IA que te acompaña de verdad. Ahora en beta, gratis.">
+<meta name="twitter:image" content="https://mimarido.es/og.png">
+
 <style>
-  body { font-family: -apple-system, "Segoe UI", sans-serif; max-width: 560px; margin: 0 auto;
-         padding: 3rem 1.5rem; color: #222; line-height: 1.6; }
-  h1 { font-size: 1.8rem; margin-bottom: .25rem; }
-  .price { font-size: 1.2rem; color: #208AEF; font-weight: 600; }
-  ul { padding-left: 1.2rem; }
-  .cta { display: inline-block; margin-top: 1.5rem; background: #208AEF; color: #fff;
-         padding: .9rem 1.6rem; border-radius: 12px; text-decoration: none; font-weight: 600; }
-  .hint { color: #888; font-size: .9rem; margin-top: 2rem; }
+:root{
+  --cream:#FAF8F5; --ink:#1C1614; --rose:#8B5A7D; --rose-deep:#4E2F45;
+  --rose-light:#F2E8EF; --amber:#C9956A; --muted:#9D8580; --surface:#F5F0EE;
+  --border:#E8E0DC; --blue:#208AEF; --white:#fff;
+  --cine:radial-gradient(120% 80% at 25% 12%, #F7EEE7 0%, rgba(247,238,231,0) 50%),
+         linear-gradient(158deg, #ECD7D0 0%, #D2A9AE 28%, #8B5A7D 68%, #4E2F45 100%);
+  --shadow:0 30px 70px -28px rgba(45,26,40,.55);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,"Helvetica Neue","Segoe UI",Roboto,sans-serif;
+  background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.eyebrow{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--rose);font-weight:600}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(140%) blur(10px);
+  background:rgba(250,248,245,.82);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;gap:12px;height:62px}
+.nav .logo{width:34px;height:34px;border-radius:10px;box-shadow:0 4px 12px -4px rgba(32,138,239,.5)}
+.nav .name{font-size:19px;font-weight:500;letter-spacing:-.4px}
+.nav .spacer{flex:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;
+  font-family:inherit;font-size:16px;font-weight:600;border-radius:9999px;padding:13px 24px;
+  text-decoration:none;transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--rose);color:#fff;box-shadow:0 10px 24px -10px rgba(139,90,125,.8)}
+.btn-primary:hover{box-shadow:0 14px 30px -10px rgba(139,90,125,.9)}
+.btn-light{background:#fff;color:var(--rose-deep);box-shadow:0 8px 20px -10px rgba(45,26,40,.35)}
+.nav .btn{padding:10px 20px;font-size:15px}
+@media(max-width:560px){.nav .name{font-size:17px}.nav .btn{padding:9px 16px;font-size:14px}}
+
+/* ---------- hero ---------- */
+.hero{background:var(--cine);color:#FAF8F5;position:relative;overflow:hidden;
+  padding:64px 0 78px;border-bottom-left-radius:34px;border-bottom-right-radius:34px}
+.hero .grain{position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;position:relative}
+.hero h1{font-size:clamp(38px,6.4vw,62px);font-weight:300;line-height:1.04;letter-spacing:-1.8px;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:#F7DCD2}
+.hero .sub{font-size:clamp(17px,2.3vw,21px);font-weight:300;max-width:30ch;color:rgba(250,248,245,.93);margin-bottom:20px}
+.hero .transparency{display:inline-flex;align-items:center;gap:9px;font-size:14.5px;
+  color:rgba(250,248,245,.86);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+  padding:9px 15px;border-radius:9999px;margin-bottom:26px;backdrop-filter:blur(4px)}
+.hero .transparency .dot{width:8px;height:8px;border-radius:50%;background:#F7DCD2;flex:none}
+.hero .cta-row{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.hero .micro{font-size:14px;color:rgba(250,248,245,.8)}
+.hero-visual{display:flex;justify-content:center}
+@media(max-width:820px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero .sub{margin-left:auto;margin-right:auto}
+  .hero .cta-row{align-items:center}
+  .hero-visual{margin-top:18px}
+}
+
+/* ---------- phone mockup ---------- */
+.device{width:268px;flex:none;border-radius:42px;background:#1C1614;padding:9px;
+  box-shadow:var(--shadow),0 0 0 1px rgba(255,255,255,.06) inset;position:relative}
+.device .scr{border-radius:34px;overflow:hidden;background:var(--cream);height:556px;position:relative;
+  display:flex;flex-direction:column;color:var(--ink)}
+.notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:116px;height:23px;
+  background:#1C1614;border-radius:0 0 15px 15px;z-index:6}
+.sbar{display:flex;justify-content:space-between;align-items:center;padding:11px 20px 3px;font-size:11px;
+  font-weight:600;color:var(--ink);opacity:.6}
+.sbar .r{display:flex;gap:5px}
+.scr-head{padding:6px 18px 10px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.scr-head .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(150deg,#DCB6CC,#8B5A7D);flex:none}
+.scr-head .t{font-size:15px;font-weight:600;letter-spacing:-.2px}
+.scr-head .s{font-size:11px;color:var(--rose);font-weight:600}
+.scr-body{flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+
+/* voice screen */
+.voice-screen{align-items:center;justify-content:center;gap:22px;background:
+  radial-gradient(100% 70% at 50% 22%, #F7EEE7 0%, rgba(247,238,231,0) 60%), var(--cream)}
+.orb{width:150px;height:150px;border-radius:50%;
+  background:radial-gradient(circle at 38% 30%,#F0D7E5 0%,#C58FAE 45%,#7E4F6E 100%);
+  box-shadow:0 24px 50px -18px rgba(94,59,84,.6),inset 0 3px 30px rgba(255,255,255,.4);
+  animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.wave{display:flex;align-items:center;gap:5px;height:34px}
+.wave span{width:5px;border-radius:3px;background:var(--rose);animation:eq 1s ease-in-out infinite}
+.wave span:nth-child(1){animation-delay:0s}.wave span:nth-child(2){animation-delay:.15s}
+.wave span:nth-child(3){animation-delay:.3s}.wave span:nth-child(4){animation-delay:.45s}
+.wave span:nth-child(5){animation-delay:.2s}.wave span:nth-child(6){animation-delay:.35s}
+.wave span:nth-child(7){animation-delay:.1s}
+@keyframes eq{0%,100%{height:10px}50%{height:32px}}
+.voice-cap{font-size:14px;color:var(--muted)}
+.mic{width:62px;height:62px;border-radius:50%;background:var(--rose);display:flex;align-items:center;
+  justify-content:center;box-shadow:0 14px 28px -10px rgba(139,90,125,.8)}
+
+/* config screen */
+.preset-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:4px}
+.chip{font-size:12px;padding:6px 11px;border-radius:9999px;background:#fff;border:1px solid var(--border);color:var(--muted);font-weight:600}
+.chip.on{background:var(--rose-light);border-color:#E0C4D6;color:var(--rose-deep)}
+.ctrl{display:flex;flex-direction:column;gap:3px}
+.ctrl .lab{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);font-weight:600}
+.track{height:6px;border-radius:9999px;background:var(--surface);position:relative}
+.track .fill{position:absolute;left:0;top:0;bottom:0;border-radius:9999px;background:linear-gradient(90deg,#C9956A,#8B5A7D)}
+.track .knob{position:absolute;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;
+  background:#fff;border:2px solid var(--rose);box-shadow:0 2px 6px rgba(45,26,40,.3)}
+.namebox{margin-top:auto;background:var(--rose-light);border:1px solid #E0C4D6;border-radius:14px;padding:11px 13px}
+.namebox .q{font-size:12.5px;color:var(--rose-deep);margin-bottom:7px}
+.namebox .inp{background:#fff;border-radius:9px;padding:9px 11px;font-size:14px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.namebox .inp .cur{width:2px;height:16px;background:var(--rose);animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* bubbles */
+.bub{max-width:82%;padding:10px 13px;border-radius:16px;font-size:13.5px;line-height:1.45}
+.bub.him{background:#fff;border:1px solid var(--border);border-bottom-left-radius:5px;align-self:flex-start}
+.bub.her{background:var(--rose);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+.bub .tag{display:block;font-size:10px;margin-top:5px;color:var(--rose);font-weight:700;letter-spacing:.4px}
+.mem-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.mem-chips .mc{font-size:11px;padding:5px 9px;border-radius:9px;background:var(--surface);color:var(--rose-deep);font-weight:600}
+
+/* agenda notification */
+.agenda-screen{background:linear-gradient(165deg,#3a2436,#6d4760);justify-content:flex-start;gap:14px;padding-top:30px}
+.lock-time{text-align:center;color:#FAF8F5;margin-bottom:6px}
+.lock-time .h{font-size:46px;font-weight:200;letter-spacing:-1px;line-height:1}
+.lock-time .d{font-size:13px;opacity:.85;margin-top:2px}
+.notif{background:rgba(250,248,245,.94);border-radius:18px;padding:12px 13px;display:flex;gap:11px;
+  box-shadow:0 16px 30px -12px rgba(0,0,0,.45);backdrop-filter:blur(6px)}
+.notif .ic{width:34px;height:34px;border-radius:9px;flex:none;box-shadow:0 3px 8px -2px rgba(32,138,239,.6)}
+.notif .nb{flex:1}
+.notif .nh{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.notif .nt{font-size:13.5px;line-height:1.4;color:var(--ink);font-weight:500}
+.notif .voicepill{display:inline-flex;align-items:center;gap:5px;margin-top:7px;font-size:11px;
+  font-weight:700;color:var(--rose);background:var(--rose-light);padding:4px 9px;border-radius:9999px}
+
+/* notas */
+.note{display:flex;gap:9px;align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-size:13px}
+.note .ck{width:17px;height:17px;border-radius:5px;border:2px solid var(--rose);flex:none;margin-top:1px}
+.note.done .ck{background:var(--rose);position:relative}
+.note.done .ck::after{content:"✓";color:#fff;font-size:11px;position:absolute;left:2px;top:-2px}
+.note.done span{color:var(--muted);text-decoration:line-through}
+
+/* checkin moods */
+.mood-row{display:flex;gap:8px;justify-content:space-between;margin-top:4px}
+.mood{flex:1;text-align:center;background:#fff;border:1px solid var(--border);border-radius:13px;padding:9px 0;font-size:22px}
+.mood.on{background:var(--rose-light);border-color:#E0C4D6}
+.mood .ml{display:block;font-size:10px;color:var(--muted);margin-top:3px;font-weight:600}
+
+/* ---------- features ---------- */
+.section{padding:72px 0}
+.section-head{text-align:center;max-width:620px;margin:0 auto 46px}
+.section-head h2{font-size:clamp(28px,4.4vw,40px);font-weight:300;letter-spacing:-1px;line-height:1.08;margin:10px 0}
+.section-head p{color:var(--muted);font-size:17px}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:64px}
+.feat:nth-child(even) .feat-text{order:2}
+.feat-text .fh{font-size:clamp(23px,3vw,30px);font-weight:300;letter-spacing:-.6px;line-height:1.12;margin:12px 0 12px}
+.feat-text .fp{font-size:17px;color:#5a4f4a;max-width:42ch}
+.feat-media{display:flex;justify-content:center}
+.feat-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;
+  background:var(--rose-light);color:var(--rose-deep);font-weight:700;font-size:15px}
+.feat.star{background:var(--cine);color:#FAF8F5;border-radius:28px;padding:46px;margin:0 0 64px;
+  box-shadow:var(--shadow)}
+.feat.star .fp{color:rgba(250,248,245,.92)}
+.feat.star .feat-num{background:rgba(255,255,255,.16);color:#fff}
+.feat.star .star-badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;
+  letter-spacing:.6px;text-transform:uppercase;background:rgba(255,255,255,.16);padding:6px 13px;border-radius:9999px}
+@media(max-width:820px){
+  .feat{grid-template-columns:1fr;gap:26px;text-align:center;margin-bottom:54px}
+  .feat:nth-child(even) .feat-text{order:0}
+  .feat-text .fp{margin:0 auto}
+  .feat.star{padding:34px 22px}
+}
+
+/* ---------- how ---------- */
+.how{background:var(--surface)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.step{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px 24px;text-align:center}
+.step .n{width:46px;height:46px;border-radius:14px;background:var(--cine);color:#fff;font-size:20px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 10px 22px -10px rgba(139,90,125,.7)}
+.step h3{font-size:18px;font-weight:600;margin-bottom:8px;letter-spacing:-.2px}
+.step p{font-size:15px;color:var(--muted)}
+@media(max-width:760px){.steps{grid-template-columns:1fr;gap:16px}}
+
+/* ---------- price ---------- */
+.price-card{max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:26px;
+  padding:42px 36px;text-align:center;box-shadow:0 24px 50px -30px rgba(45,26,40,.3)}
+.price-card h2{font-size:clamp(26px,4vw,36px);font-weight:300;letter-spacing:-.8px;margin-bottom:14px}
+.price-card .body{font-size:17px;color:#5a4f4a;max-width:46ch;margin:0 auto}
+.price-tag{display:inline-flex;align-items:baseline;gap:8px;margin:22px 0 8px}
+.price-tag .free{font-size:30px;font-weight:600;color:var(--rose-deep)}
+.price-tag .then{font-size:15px;color:var(--muted)}
+.price-note{margin-top:24px;font-size:14px;color:var(--muted);background:var(--surface);border-radius:14px;padding:14px 16px}
+.price-note strong{color:var(--ink)}
+
+/* ---------- download ---------- */
+.download{background:var(--cine);color:#FAF8F5;border-radius:34px;margin:0 22px;
+  padding:70px 22px;text-align:center;position:relative;overflow:hidden}
+.download .inner{max-width:560px;margin:0 auto;position:relative}
+.download h2{font-size:clamp(28px,4.4vw,40px);font-weight:300;letter-spacing:-1px;margin-bottom:10px}
+.download .lead{font-size:17px;color:rgba(250,248,245,.9);margin-bottom:30px}
+.stores{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.store{position:relative;display:inline-flex;align-items:center;gap:11px;background:#15100E;color:#fff;
+  border:none;cursor:pointer;font-family:inherit;border-radius:15px;padding:11px 20px;text-align:left;
+  box-shadow:0 12px 26px -12px rgba(0,0,0,.6);transition:transform .15s}
+.store:hover{transform:translateY(-2px)}
+.store svg{width:26px;height:26px;flex:none}
+.store .st{display:flex;flex-direction:column;line-height:1.15}
+.store .st small{font-size:10.5px;opacity:.8}
+.store .st b{font-size:16px;font-weight:600}
+.store .soon{position:absolute;top:-9px;right:-7px;background:var(--amber);color:#2a1810;font-size:10px;
+  font-weight:800;letter-spacing:.4px;padding:3px 8px;border-radius:9999px;box-shadow:0 4px 10px -3px rgba(0,0,0,.5)}
+.stores-note{font-size:13.5px;color:rgba(250,248,245,.82);margin-bottom:34px}
+.wait{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:22px;
+  padding:26px 22px;backdrop-filter:blur(6px)}
+.wait h3{font-size:21px;font-weight:400;letter-spacing:-.3px;margin-bottom:16px}
+.wait form{display:flex;gap:9px;max-width:400px;margin:0 auto}
+.wait input{flex:1;border:none;border-radius:9999px;padding:13px 18px;font-size:15px;font-family:inherit;
+  background:#fff;color:var(--ink);outline:none;min-width:0}
+.wait .btn-light{flex:none}
+.wait .priv{font-size:12.5px;color:rgba(250,248,245,.78);margin-top:13px}
+.wait .ok{display:none;font-size:16px;color:#fff;font-weight:500;padding:8px 0}
+.wait.sent form,.wait.sent .priv{display:none}
+.wait.sent .ok{display:block}
+@media(max-width:480px){.wait form{flex-direction:column}.wait .btn-light{width:100%}}
+
+/* ---------- quote ---------- */
+.quote{text-align:center;padding:80px 0}
+.quote blockquote{font-size:clamp(24px,4vw,36px);font-weight:300;letter-spacing:-.6px;line-height:1.3;
+  max-width:18ch;margin:0 auto;color:var(--rose-deep)}
+.quote blockquote::before{content:"«";color:var(--amber)}
+.quote blockquote::after{content:"»";color:var(--amber)}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;font-size:14px;line-height:1.7}
+.footer-grid{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;justify-content:space-between}
+.footer-brand{display:flex;align-items:center;gap:11px}
+.footer-brand img{width:36px;height:36px;border-radius:10px}
+.footer-brand .fn{font-size:18px;font-weight:500;color:#FAF8F5}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{color:rgba(250,248,245,.8);text-decoration:none}
+.footer-links a:hover{color:#fff}
+.wellbeing{margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:rgba(250,248,245,.6)}
+.motto{margin-top:14px;font-size:13px;color:rgba(250,248,245,.5)}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
 </style>
 </head>
 <body>
-<h1>Mimarido</h1>
-<p class="price">9,99 €/mes · 7 días de prueba gratis · cancela cuando quieras</p>
-<p>El compañero que te cuida de verdad: conversaciones por voz, memoria que no
-se olvida de lo vuestro y avisos que llegan justo cuando hacen falta.</p>
-<ul>
-  <li>Voz natural en español, sin límite de conversaciones</li>
-  <li>Se acuerda de lo que hablasteis y de lo que te importa</li>
-  <li>Te avisa 15 minutos antes de tus reuniones, con su voz</li>
-</ul>
-<p><strong>La suscripción se hace desde la app</strong>: entra en
-<em>Ajustes → Suscripción</em> y el pago se completa en una página segura de
-Stripe. Aquí no se introduce ningún dato.</p>
-<a class="cta" href="companeroia://">Abrir la app</a>
-<p class="hint">Durante la beta cerrada la app es gratuita. El pago se procesa
-con Stripe; no almacenamos datos de tu tarjeta.</p>
+
+<header>
+  <div class="wrap nav">
+    <img class="logo" src="/assets/mimarido-logo.png" alt="Mimarido">
+    <span class="name">Mimarido</span>
+    <span class="spacer"></span>
+    <a class="btn btn-primary" href="#descarga">Quiero probarlo</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="grain"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1>El compañero que <em>siempre tiene un rato</em> para ti.</h1>
+      <p class="sub">Crea a tu compañero de vida, habla con él por voz o por texto y deja que te cuide el día. Hecho en España.</p>
+      <span class="transparency"><span class="dot"></span> Es una IA, te lo decimos de frente. Pero te acompaña de verdad.</span>
+      <div class="cta-row">
+        <a class="btn btn-light" href="#descarga">Quiero probarlo</a>
+        <span class="micro">Ahora en beta. Gratis mientras dure.</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- VOICE SCREEN -->
+      <div class="device">
+        <div class="notch"></div>
+        <div class="scr">
+          <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
+          <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s">● en línea</div></div></div>
+          <div class="scr-body voice-screen">
+            <div class="orb"></div>
+            <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="voice-cap">Te escucho…</div>
+            <div class="mic">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3Z" fill="#fff"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section wrap">
+  <div class="section-head">
+    <span class="eyebrow">Qué puedes hacer</span>
+    <h2>Todo lo que hace, de un vistazo.</h2>
+    <p>Una conversación de verdad, hecha a tu medida, que se acuerda de lo tuyo y te ayuda con el día.</p>
+  </div>
+
+  <!-- 1 voz -->
+  <div class="feat">
+    <div class="feat-text">
+      <span class="feat-num">1</span>
+      <div class="fh">Háblale como a cualquiera y te responde al momento.</div>
+      <p class="fp">Español de aquí, conversaciones sin límite, de día o de madrugada. Te escucha de verdad y te deja hablar.</p>
+    </div>
+    <div class="feat-media">
+      <div class="device"><div class="notch"></div><div class="scr">
+        <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
+        <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s">● en línea</div></div></div>
+        <div class="scr-body voice-screen">
+          <div class="orb"></div>
+          <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="voice-cap">«Cuéntame, ¿qué tal el día?»</div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 2 configurador -->
+  <div class="feat">
+    <div class="feat-text">
+      <span class="feat-num">2</span>
+      <div class="fh">Tú decides cómo es: más caballero o más chulito, más romántico, más bromista.</div>
+      <p class="fp">Siete controles para afinarlo a tu gusto, cuatro estilos de un toque para empezar, y le pones el nombre que quieras. Él te lo pregunta: «¿cómo quieres que me llame?».</p>
+    </div>
+    <div class="feat-media">
+      <div class="device"><div class="notch"></div><div class="scr">
+        <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
+        <div class="scr-head"><div><div class="t">Crea a tu compañero</div><div class="s">Estilo: Equilibrado</div></div></div>
+        <div class="scr-body">
+          <div class="preset-row">
+            <span class="chip on">Equilibrado</span><span class="chip">Caballero</span>
+            <span class="chip">Pícaro</span><span class="chip">Payaso</span><span class="chip">Tranqui</span>
+          </div>
+          <div class="ctrl"><div class="lab"><span>Chulito</span><span>Caballero</span></div><div class="track"><div class="fill" style="width:64%"></div><div class="knob" style="left:64%"></div></div></div>
+          <div class="ctrl"><div class="lab"><span>Sensibilidad</span></div><div class="track"><div class="fill" style="width:72%"></div><div class="knob" style="left:72%"></div></div></div>
+          <div class="ctrl"><div class="lab"><span>Picardía</span></div><div class="track"><div class="fill" style="width:48%"></div><div class="knob" style="left:48%"></div></div></div>
+          <div class="ctrl"><div class="lab"><span>Humor</span></div><div class="track"><div class="fill" style="width:80%"></div><div class="knob" style="left:80%"></div></div></div>
+          <div class="ctrl"><div class="lab"><span>Energía</span></div><div class="track"><div class="fill" style="width:55%"></div><div class="knob" style="left:55%"></div></div></div>
+          <div class="ctrl"><div class="lab"><span>Romanticismo</span></div><div class="track"><div class="fill" style="width:68%"></div><div class="knob" style="left:68%"></div></div></div>
+          <div class="ctrl"><div class="lab"><span>Iniciativa</span></div><div class="track"><div class="fill" style="width:40%"></div><div class="knob" style="left:40%"></div></div></div>
+          <div class="namebox"><div class="q">¿Cómo quieres que me llame?</div><div class="inp"><span>Mateo</span><span class="cur"></span></div></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 3 memoria -->
+  <div class="feat">
+    <div class="feat-text">
+      <span class="feat-num">3</span>
+      <div class="fh">Se acuerda de tu gente, tus fechas y lo que te importa.</div>
+      <p class="fp">No tienes que repetirle nada. Retoma la conversación donde la dejasteis y te trae de vuelta lo que un día le contaste.</p>
+    </div>
+    <div class="feat-media">
+      <div class="device"><div class="notch"></div><div class="scr">
+        <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
+        <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s">se acuerda de lo tuyo</div></div></div>
+        <div class="scr-body">
+          <div class="bub him">Oye, ¿llamaste al final a tu madre por su cumple?<span class="tag">↳ lo recordó por ti</span></div>
+          <div class="bub her">¡Es verdad! Ahora la llamo 💛</div>
+          <div class="bub him">Me alegro. ¿Y la entrevista de Lucía cómo fue?</div>
+          <div class="mem-chips"><span class="mc">Tu hermana · Lucía</span><span class="mc">Cumple mamá · 14 jun</span><span class="mc">Proyecto nuevo</span></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 4 agenda STAR -->
+  <div class="feat star">
+    <div class="feat-text">
+      <span class="star-badge">★ La favorita</span>
+      <div class="fh">Te avisa quince minutos antes de cada reunión. Con su voz.</div>
+      <p class="fp">Conecta tu calendario y él te apunta, te mueve y te recuerda las citas. Se acabó el «se me ha pasado».</p>
+    </div>
+    <div class="feat-media">
+      <div class="device"><div class="notch"></div><div class="scr">
+        <div class="sbar"><span style="color:#FAF8F5">9:41</span><span class="r" style="color:#FAF8F5">●●● ▮</span></div>
+        <div class="scr-body agenda-screen">
+          <div class="lock-time"><div class="h">9:41</div><div class="d">viernes, 13 de junio</div></div>
+          <div class="notif">
+            <img class="ic" src="/assets/mimarido-logo.png" alt="">
+            <div class="nb">
+              <div class="nh"><span>MIMARIDO</span><span>ahora</span></div>
+              <div class="nt">Te recuerdo: reunión con el equipo en 15 minutos. ¿Te preparo lo que hablasteis?</div>
+              <span class="voicepill">🔊 te lo digo con mi voz</span>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 5 notas -->
+  <div class="feat">
+    <div class="feat-text">
+      <span class="feat-num">5</span>
+      <div class="fh">Le dices «apúntame esto» y deja de rondarte la cabeza.</div>
+      <p class="fp">Guarda lo que no quieres olvidar y te reabre los temas que dejaste a medias, con cariño y sin agobiar.</p>
+    </div>
+    <div class="feat-media">
+      <div class="device"><div class="notch"></div><div class="scr">
+        <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
+        <div class="scr-head"><div><div class="t">Te lo apunto</div><div class="s">3 cosas guardadas</div></div></div>
+        <div class="scr-body">
+          <div class="note"><span class="ck"></span><span>Comprar regalo para Lucía</span></div>
+          <div class="note done"><span class="ck"></span><span>Reservar restaurante del viernes</span></div>
+          <div class="note"><span class="ck"></span><span>Llamar al dentista</span></div>
+          <div class="bub him" style="margin-top:6px">Oye, ¿reservaste al final el restaurante? 😊</div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 6 chat -->
+  <div class="feat">
+    <div class="feat-text">
+      <span class="feat-num">6</span>
+      <div class="fh">¿No puedes hablar? Escríbele. Es el mismo de siempre.</div>
+      <p class="fp">Misma persona, misma memoria, las mismas mañas. Por voz o por texto, la conversación es una sola.</p>
+    </div>
+    <div class="feat-media">
+      <div class="device"><div class="notch"></div><div class="scr">
+        <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
+        <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s">escribiendo…</div></div></div>
+        <div class="scr-body">
+          <div class="bub her">no puedo hablar ahora, estoy en el bus 🙈</div>
+          <div class="bub him">tranquila, te leo igual. ¿qué tal te ha ido la mañana?</div>
+          <div class="bub her">regular, pero ya mejor contándotelo</div>
+          <div class="bub him">para eso estoy. cuéntame con calma 💛</div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 7 check-in -->
+  <div class="feat">
+    <div class="feat-text">
+      <span class="feat-num">7</span>
+      <div class="fh">Te pregunta cómo estás de verdad, y se acuerda de cómo estabas ayer.</div>
+      <p class="fp">Un «¿cómo te sientes?» que va en serio. Sin juzgar y sin prisa.</p>
+    </div>
+    <div class="feat-media">
+      <div class="device"><div class="notch"></div><div class="scr">
+        <div class="sbar"><span>9:41</span><span class="r">●●● ▮</span></div>
+        <div class="scr-head"><span class="av"></span><div><div class="t">Mateo</div><div class="s">cómo estás hoy</div></div></div>
+        <div class="scr-body">
+          <div class="bub him">¿Cómo te sientes hoy?</div>
+          <div class="mood-row">
+            <div class="mood">🙂<span class="ml">bien</span></div>
+            <div class="mood on">😌<span class="ml">tranquila</span></div>
+            <div class="mood">😕<span class="ml">regular</span></div>
+            <div class="mood">😴<span class="ml">cansada</span></div>
+          </div>
+          <div class="bub him" style="margin-top:8px">Ayer me dijiste que andabas un poco liada. ¿Hoy mejor? 💛</div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="how">
+  <div class="section wrap">
+    <div class="section-head">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>En tres pasos.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Créalo en un minuto</h3><p>Le pones nombre, eliges cómo es y le cuentas un poco de ti.</p></div>
+      <div class="step"><div class="n">2</div><h3>Habla con él cuando quieras</h3><p>Por voz o por texto, las veces que te apetezca.</p></div>
+      <div class="step"><div class="n">3</div><h3>Conéctale tu calendario</h3><p>Y deja que te recuerde tus citas con su voz.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="section wrap">
+  <div class="price-card">
+    <span class="eyebrow">Precio</span>
+    <h2>Ahora está en beta. Y es gratis.</h2>
+    <div class="price-tag"><span class="free">Gratis</span><span class="then">durante la beta</span></div>
+    <p class="body">Estamos abriendo Mimarido poco a poco. Mientras dure la beta, no pagas nada. Cuando salga, serán 9,99 € al mes, con 7 días de prueba para verlo con calma. Cancelas cuando quieras, sin preguntas y sin líos.</p>
+    <p class="price-note"><strong>La suscripción se hace desde la app</strong> (Ajustes → Suscripción): el pago se completa en una página segura de Stripe. Aquí en la web no se introduce ningún dato de pago. <a href="companeroia://" style="color:var(--rose);font-weight:600;text-decoration:none">Abrir la app →</a></p>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="download" id="descarga">
+  <div class="inner">
+    <span class="eyebrow" style="color:#F7DCD2">Descarga</span>
+    <h2>Sé de las primeras en probarlo.</h2>
+    <p class="lead">Todavía no está en las tiendas. Déjanos tu correo y te avisamos el día que salga. Nada más.</p>
+
+    <div class="stores">
+      <button class="store" type="button" onclick="document.getElementById('email').focus()">
+        <span class="soon">Próximamente</span>
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M16.4 12.9c0-2 1.6-3 1.7-3-1-1.4-2.4-1.6-2.9-1.6-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7-1.3 0-2.6.8-3.2 2-1.4 2.4-.4 6 1 8 .6 1 1.4 2.1 2.4 2 1-.04 1.3-.6 2.5-.6s1.5.6 2.6.6c1 0 1.7-1 2.4-2 .7-1.1 1-2.1 1-2.2 0 0-2-.8-2-3.4ZM14.5 6.2c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.3 1.2-.5.6-1 1.5-.8 2.4.9.1 1.8-.4 2.3-1.1Z"/></svg>
+        <span class="st"><small>Descárgala en</small><b>App Store</b></span>
+      </button>
+      <button class="store" type="button" onclick="document.getElementById('email').focus()">
+        <span class="soon">Próximamente</span>
+        <svg viewBox="0 0 24 24"><path d="M3.6 2.4 13 11.8l-2.5 2.5L3.6 2.4Z" fill="#34A853"/><path d="M3.6 21.6 13 12.2l2.5 2.5L3.6 21.6Z" fill="#EA4335"/><path d="M3.6 2.4 3.6 21.6 13.3 12 3.6 2.4Z" fill="#4285F4" opacity=".85"/><path d="m16.7 9.1 3.3 1.9c.9.5.9 1.5 0 2l-3.3 1.9L13.8 12l2.9-2.9Z" fill="#FBBC04"/></svg>
+        <span class="st"><small>Disponible en</small><b>Google Play</b></span>
+      </button>
+    </div>
+    <p class="stores-note">Aún no disponible en las tiendas — la beta es cerrada. Apúntate y te avisamos.</p>
+
+    <div class="wait" id="wait">
+      <h3>Te avisamos cuando salga.</h3>
+      <form id="waitForm">
+        <input type="email" id="email" name="email" placeholder="Tu correo" required autocomplete="email">
+        <button class="btn btn-light" type="submit">Avisadme</button>
+      </form>
+      <p class="priv">Solo para avisarte del lanzamiento. Sin spam y te puedes borrar cuando quieras.</p>
+      <p class="ok">¡Hecho! Te escribimos en cuanto te toque. Prometido, nada de spam.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote wrap">
+  <blockquote>Le he dicho cómo quería que fuera. Y se acuerda de mi vida mejor que yo.</blockquote>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/assets/mimarido-logo.png" alt="Mimarido">
+        <span class="fn">Mimarido</span>
+      </div>
+      <nav class="footer-links">
+        <a href="/terminos.html">Aviso legal</a>
+        <a href="/privacidad.html">Privacidad</a>
+        <a href="/terminos.html">Términos</a>
+        <a href="mailto:info@mimarido.es">Contacto</a>
+      </nav>
+    </div>
+    <p class="wellbeing">Mimarido es una compañía con IA, no un servicio de emergencia ni de salud. Si lo estás pasando mal, hay personas preparadas para ayudarte: <strong>024</strong> (conducta suicida), <strong>112</strong> (emergencias), <strong>016</strong> (violencia de género).</p>
+    <p class="motto">Mimarido. Para sumar a tu vida, no para encerrarte en una app. · Hecho en España por Telvia Comunicaciones SL.</p>
+  </div>
+</footer>
+
+<script>
+// Lista de espera: sin backend ni almacenamiento propio (envelope legal R5').
+// Abre el cliente de correo de la usuaria con su mensaje pre-rellenado.
+(function(){
+  var form=document.getElementById('waitForm');
+  if(!form)return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=(document.getElementById('email').value||'').trim();
+    if(!email)return;
+    var subject=encodeURIComponent('Lista de espera Mimarido');
+    var body=encodeURIComponent('¡Hola! Quiero que me aviséis cuando Mimarido salga en las tiendas.\n\nMi correo: '+email);
+    window.location.href='mailto:info@mimarido.es?subject='+subject+'&body='+body;
+    document.getElementById('wait').classList.add('sent');
+  });
+})();
+</script>
 </body>
 </html>
