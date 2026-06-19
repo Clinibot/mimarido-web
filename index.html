@@ -264,6 +264,25 @@ header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(140%) blur(10px
 .price-note{margin-top:24px;font-size:14px;color:var(--muted);background:var(--surface);border-radius:14px;padding:14px 16px}
 .price-note strong{color:var(--ink)}
 
+/* ---------- ask: cómo funciona / pregúntaselo a él (SONA-876) ---------- */
+.ask{padding:72px 0}
+.ask-card{max-width:680px;margin:0 auto;text-align:center;border:1px solid var(--border);border-radius:28px;
+  padding:54px 40px;box-shadow:0 30px 60px -34px rgba(45,26,40,.32);
+  background:radial-gradient(120% 80% at 50% 0%, #FBEEF5 0%, rgba(251,238,245,0) 58%), var(--white)}
+.ask-card h2{font-size:clamp(27px,4.4vw,40px);font-weight:300;letter-spacing:-1px;line-height:1.1;
+  margin:12px auto 0;max-width:20ch}
+.ask-sub{font-size:17px;color:var(--muted);max-width:42ch;margin:16px auto 0}
+.ask-what{font-size:16px;color:#5a4f4a;max-width:50ch;margin:22px auto 0;line-height:1.6}
+.ask-remate{font-size:15.5px;color:var(--rose-deep);background:var(--rose-light);border:1px solid #E0C4D6;
+  border-radius:16px;padding:16px 20px;max-width:48ch;margin:30px auto 0;line-height:1.55}
+.ask-anchor{font-size:clamp(22px,3.6vw,30px);font-weight:400;letter-spacing:-.5px;line-height:1.25;
+  color:var(--rose-deep);max-width:22ch;margin:34px auto 0}
+.ask-cta{margin-top:26px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.ask-cta .micro{font-size:14px;color:var(--muted);max-width:36ch}
+.ask-have{display:inline-block;margin-top:4px;font-size:14.5px;color:var(--rose);font-weight:600;text-decoration:none}
+.ask-have:hover{text-decoration:underline}
+@media(max-width:560px){.ask-card{padding:40px 22px}}
+
 /* ---------- download ---------- */
 .download{background:var(--cine);color:#FAF8F5;border-radius:34px;margin:0 22px;
   padding:70px 22px;text-align:center;position:relative;overflow:hidden}
@@ -569,6 +588,23 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
   </div>
 </section>
 
+<!-- ASK · Cómo funciona / pregúntaselo a él (SONA-876) -->
+<section class="ask wrap" id="como-funciona">
+  <div class="ask-card">
+    <span class="eyebrow" data-i18n="ask.eyebrow">En una frase</span>
+    <h2 data-i18n="ask.h2">La mejor forma de saber qué hace Mimarido es preguntárselo a él.</h2>
+    <p class="ask-sub" data-i18n="ask.sub">Lo abres, le hablas y él te acompaña. Esto de aquí es solo el titular; lo demás te lo cuenta él.</p>
+    <p class="ask-what" data-i18n="ask.what">Es una IA, te lo decimos de frente. Pero está aquí de verdad: en cuanto le dices hola, se presenta, te pregunta cómo estás y te va enseñando lo que puede hacer por ti sobre la marcha.</p>
+    <p class="ask-remate" data-i18n="ask.remate">¿Quieres ver todo lo que puede hacer? No lo busques aquí. Pregúntaselo a él: «¿qué puedes hacer por mí?». Y te lo cuenta.</p>
+    <p class="ask-anchor" data-i18n="ask.anchor">Habla con él directamente. Él te lo contará todo.</p>
+    <div class="ask-cta">
+      <a class="btn btn-primary" href="#descarga" data-i18n="ask.cta">Quiero hablar con él</a>
+      <span class="micro" data-i18n="ask.micro">Ahora en beta y gratis. Te avisamos en cuanto puedas descargarla y conocerlo.</span>
+      <a class="ask-have" href="companeroia://" data-i18n="ask.have">¿Ya la tienes? Ábrela y dile hola →</a>
+    </div>
+  </div>
+</section>
+
 <!-- PRICE -->
 <section class="section wrap">
   <div class="price-card">
@@ -737,6 +773,15 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
       'how.s2.p':`By voice or by text, as often as you feel like.`,
       'how.s3.h':`Connect your Google Calendar`,
       'how.s3.p':`And let him remind you of your plans in his voice.`,
+      'ask.eyebrow':`In one line`,
+      'ask.h2':`The best way to find out what Mimarido does is to ask him.`,
+      'ask.sub':`You open it, you talk to him and he keeps you company. This here is just the headline; the rest he tells you himself.`,
+      'ask.what':`It's an AI — we tell you straight. But he's truly there: the moment you say hello, he introduces himself, asks how you are and shows you what he can do for you as you go.`,
+      'ask.remate':`Want to see everything he can do? Don't look for it here. Ask him: "what can you do for me?". And he'll tell you.`,
+      'ask.anchor':`Talk to him directly. He'll tell you everything.`,
+      'ask.cta':`I want to talk to him`,
+      'ask.micro':`Now in beta and free. We'll let you know the moment you can download it and meet him.`,
+      'ask.have':`Already have it? Open it and say hello →`,
       'price.eyebrow':`Price`,
       'price.h2':`It's in beta right now. And it's free.`,
       'price.free':`Free`,
@@ -853,6 +898,15 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
       'how.s2.p':`A voce o per messaggio, tutte le volte che vuoi.`,
       'how.s3.h':`Collega il tuo Google Calendar`,
       'how.s3.p':`E lascia che ti ricordi gli appuntamenti con la sua voce.`,
+      'ask.eyebrow':`In una frase`,
+      'ask.h2':`Il modo migliore per sapere cosa fa Mimarido è chiederlo a lui.`,
+      'ask.sub':`Lo apri, gli parli e lui ti accompagna. Questo qui è solo il titolo; il resto te lo racconta lui.`,
+      'ask.what':`È un'IA, te lo diciamo apertamente. Ma è qui davvero: appena gli dici ciao, si presenta, ti chiede come stai e ti mostra cosa può fare per te strada facendo.`,
+      'ask.remate':`Vuoi vedere tutto ciò che può fare? Non cercarlo qui. Chiediglielo: «cosa puoi fare per me?». E te lo racconta.`,
+      'ask.anchor':`Parla con lui direttamente. Ti racconterà tutto.`,
+      'ask.cta':`Voglio parlare con lui`,
+      'ask.micro':`Ora in beta e gratis. Ti avvisiamo appena potrai scaricarla e conoscerlo.`,
+      'ask.have':`Ce l'hai già? Aprila e digli ciao →`,
       'price.eyebrow':`Prezzo`,
       'price.h2':`Ora è in beta. Ed è gratis.`,
       'price.free':`Gratis`,
@@ -969,6 +1023,15 @@ footer{background:var(--ink);color:rgba(250,248,245,.72);padding:54px 0 40px;fon
       'how.s2.p':`À la voix ou par texte, autant de fois que tu veux.`,
       'how.s3.h':`Connecte ton Google Calendar`,
       'how.s3.p':`Et laisse-le te rappeler tes rendez-vous avec sa voix.`,
+      'ask.eyebrow':`En une phrase`,
+      'ask.h2':`La meilleure façon de savoir ce que fait Mimarido, c'est de le lui demander.`,
+      'ask.sub':`Tu l'ouvres, tu lui parles et il t'accompagne. Ceci n'est que le titre ; le reste, c'est lui qui te le raconte.`,
+      'ask.what':`C'est une IA, on te le dit franchement. Mais il est là pour de vrai : dès que tu lui dis bonjour, il se présente, te demande comment tu vas et te montre ce qu'il peut faire pour toi au fil de la conversation.`,
+      'ask.remate':`Tu veux voir tout ce qu'il peut faire ? Ne le cherche pas ici. Demande-le-lui : « qu'est-ce que tu peux faire pour moi ? ». Et il te le raconte.`,
+      'ask.anchor':`Parle-lui directement. Il te racontera tout.`,
+      'ask.cta':`Je veux lui parler`,
+      'ask.micro':`Maintenant en bêta et gratuit. On te prévient dès que tu pourras la télécharger et le rencontrer.`,
+      'ask.have':`Tu l'as déjà ? Ouvre-la et dis-lui bonjour →`,
       'price.eyebrow':`Prix`,
       'price.h2':`C'est en bêta pour l'instant. Et c'est gratuit.`,
       'price.free':`Gratuit`,
